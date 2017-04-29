@@ -16,7 +16,8 @@
     "ethereum",
     "eth",
     "btc",
-    "rate"
+    "rate",
+    "bitcoin"
   ],
   "author": "Leon Do",
   "license": "ISC",
