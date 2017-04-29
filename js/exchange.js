@@ -1,19 +1,3 @@
-// This code does API calls to all of the exchanges and saves the rates into an object called results
-
-var async = require('async')
-var request = require('request')
-
-//expose results to other js files
-exports.rates = function(coin1, coin2, cb){
-    
-    // run the API calls in parallel
-    async.parallel({
-
-        //API call to poloniex
-        poloniex: function(callback){
-
-            // call to get poloniex ticker// This code does API calls to all of the exchanges and saves the rates into an array called lowestAsk
-
 /*
 
     The flow:
@@ -31,6 +15,9 @@ exports.rates = function(coin1, coin2, cb){
         - not performant. Some data structures can be retrieved in one call. This method may call the same data structure multiple times.
 
 */
+
+var async = require('async')
+var request = require('request')
 
 //expose results to other js files (server.js)
 exports.rates = function(coin1, coin2, cb){
@@ -89,38 +76,6 @@ exports.rates = function(coin1, coin2, cb){
             rate: parseFloat(results.bittrex.result.Ask),
             name: "bittrex"})
         // lowestAsk = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
-        cb(lowestAsk)
-    });
-
-}
-            request('https://poloniex.com/public?command=returnTicker', function (error, response, body) {
-                var object = JSON.parse(body)
-                callback(error, object[`${coin1}_${coin2}`])
-            });
-
-
-        },
-        // API call to Bittrex
-        bittrex: function(callback){
-
-            // call to get Bittrex ticker
-            request(`https://bittrex.com/api/v1.1/public/getticker?market=${coin1}-${coin2}`, function (error, response, body) {
-                callback(error, body)
-            })
-
-
-        }
-    },
-    // combines two api calls into an object called results
-    function(error, results) {
-        // parse the results into a array called lowestAsk. I'm using an array to get the lowest value in O(n) time. This data structure can be optimized
-        var lowestAsk = []
-        lowestAsk.push({
-            rate: parseFloat(results.poloniex.lowestAsk),
-            name: "poloniex"})
-        lowestAsk.push({
-            rate: JSON.parse(results.bittrex).result.Ask,
-            name: "bittrex"})
         cb(lowestAsk)
     });
 
