@@ -1,32 +1,16 @@
-var async = require('async')
-var request = require('request')
+var arr = [ { val: 12 , name: 'test1'}, { val: 33, name: 'test2' } , { val: 9 , name: 'test2'}, { val: 10 , name: 'test3'}]
 
-async.parallel({
+var index = indexOfLowestVal(arr)
 
-    //API call to poloniex
-    poloniex: function(callback){
-
-        // call to get poloniex ticker
-        request('https://poloniex.com/public?command=returnTicker', function (error, response, body) {
-            var object = JSON.parse(body)
-            callback(error, object.BTC_ETH)
-        });
-
-
-    },
-    // API call to Bittrex
-    bittrex: function(callback){
-
-        // call to get Bittrex ticker
-        var pair = 'BTC-ETH'
-        request(`https://bittrex.com/api/v1.1/public/getticker?market=${pair}`, function (error, response, body) {
-            callback(error, body)
-        })
-
-
+function indexOfLowestVal(){
+    var minIndex = 0
+    for (let i = 0; i < arr.length; i++){
+        if (arr[minIndex].val > arr[i].val) {
+            minIndex = i;
+        }
     }
-},
-function(error, results) {
-    // combines two api calls into an object called results
-    console.log(results)
-});
+
+    return minIndex
+}
+
+console.log(index)

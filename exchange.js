@@ -4,7 +4,7 @@ var async = require('async')
 var request = require('request')
 
 //expose results to other js files
-exports.rates = function(pair, cb){
+exports.rates = function(coin1, coin2, cb){
     
     // run the API calls in parallel
     async.parallel({
@@ -15,7 +15,7 @@ exports.rates = function(pair, cb){
             // call to get poloniex ticker
             request('https://poloniex.com/public?command=returnTicker', function (error, response, body) {
                 var object = JSON.parse(body)
-                callback(error, object.BTC_ETH)
+                callback(error, object[`${coin1}_${coin2}`])
             });
 
 
@@ -24,16 +24,24 @@ exports.rates = function(pair, cb){
         bittrex: function(callback){
 
             // call to get Bittrex ticker
-            request(`https://bittrex.com/api/v1.1/public/getticker?market=${pair}`, function (error, response, body) {
+            request(`https://bittrex.com/api/v1.1/public/getticker?market=${coin1}-${coin2}`, function (error, response, body) {
                 callback(error, body)
             })
 
 
         }
     },
+    // combines two api calls into an object called results
     function(error, results) {
-        // combines two api calls into an object called results
-        cb(results)
+        // parse the results into a array called currentAsk. I'm using an array to get the lowest value in O(n) time. This data structure can be optimized
+        var currentAsk = []
+        currentAsk.push({
+            rate: parseFloat(results.poloniex.lowestAsk),
+            name: "poloniex"})
+        currentAsk.push({
+            rate: JSON.parse(results.bittrex).result.Ask,
+            name: "bittrex"})
+        cb(currentAsk)
     });
 
 }

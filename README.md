@@ -20,7 +20,3 @@ Extra points for:
 - make results accessible via an api
 - display results in web page
 
-
-sources:
-https://poloniex.com/support/api/
-
