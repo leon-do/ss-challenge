@@ -1,5 +1,6 @@
 // returns the lowest index from arr 
 // data structure: [ { rate: 0.05256994, name: 'poloniex' }, { rate: 0.0525892, name: 'bittrex' } ]
+// returns minIndex = 0
 
 exports.indexOfLowestVal = function(arr, callback) {
     var minIndex = 0

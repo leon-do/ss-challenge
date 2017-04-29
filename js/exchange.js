@@ -32,9 +32,6 @@ exports.rates = function(coin1, coin2, cb){
 
 */
 
-var async = require('async')
-var request = require('request')
-
 //expose results to other js files (server.js)
 exports.rates = function(coin1, coin2, cb){
     
