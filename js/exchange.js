@@ -45,10 +45,17 @@ exports.rates = function(coin1, coin2, cb){
                 callback(error, object)
             })
 
+        },
+
+
+        yobit: function(callback){
+
+            request(`https://yobit.net/api/3/ticker/${coin2.toString().toLowerCase()}_${coin1.toString().toLowerCase()}`, function (error, response, body) {
+                var object = JSON.parse(body)
+                callback(error, object[`${coin2.toString().toLowerCase()}_${coin1.toString().toLowerCase()}`])
+            });
 
         }
-
-
 
         /* 
         ADD ANOTHER API CALL HERE
@@ -75,6 +82,9 @@ exports.rates = function(coin1, coin2, cb){
         lowestAsk.push({
             rate: parseFloat(results.bittrex.result.Ask),
             name: "bittrex"})
+        lowestAsk.push({
+            rate: parseFloat(results.yobit.low),
+            name: "yobit"})        
         // lowestAsk = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
         cb(lowestAsk)
     });
