@@ -1,5 +1,7 @@
 # shapeshift-challenge
 
+<h1> `$ node server.js` <h1>
+
 Joe wants to send <20 bitcoin> to each of his three kids none of which have a bitcoin wallet. They have each requested that he send them coin in their favorite currencies: 
 Ethereum, Litecoin, and DASH. 
 
