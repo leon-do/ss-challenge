@@ -11,7 +11,6 @@ var bestRate = require('./js/bestRate.js')
     exchange is a funciton from exchange.js
     exchange takes in two arguments, coin1 and coin2 and returns an array with different rates from different exchanges.
 
-
 */
 
 
@@ -35,7 +34,6 @@ exchange.rates('BTC','LTC', function(arr){
         console.log(`
 
             BTC to LTC exchange rate: ${JSON.stringify(arr)}
-
             Between Poloniex and Bittrex, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
 
         `)    
@@ -47,7 +45,6 @@ exchange.rates('BTC','DASH', function(arr){
         console.log(`
 
             BTC to DASH exchange rate: ${JSON.stringify(arr)}
-
             Between Poloniex and Bittrex, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
 
         `)    
