@@ -5,8 +5,8 @@ var bestRate = require('./bestRate.js')
 // calls a funciton from exchange.js
 exchange.rates('BTC','ETH', function(arr){
     // calls funtion from bestRate.js
-    console.log(arr)
     bestRate.indexOfLowestVal(arr, function(index){
+        //index from the callback is the index with the lowest rate
         console.log(arr[index].name)
     })
 })
