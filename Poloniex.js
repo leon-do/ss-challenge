@@ -1,37 +1,17 @@
-// documentation at https://poloniex.com/support/api/
+// https://poloniex.com/support/api/
 
-//npm module
-var autobahn = require('autobahn');
+var request = require('request');
 
-//connect to poloniex's socket
-var connection = new autobahn.Connection({
-  url: "wss://api.poloniex.com",
-  realm: "realm1"
+
+var date = new Date();
+var startDate = Math.floor(date.getTime()/1000) - 100;
+var endDate = Math.floor(date.getTime()/1000)
+var pair = 'BTC_DASH'
+
+var url = `https://poloniex.com/public?command=returnTradeHistory&currencyPair=${pair}&start=${startDate}&end=${endDate}`
+
+request(url, function (error, response, body) {
+    var object = JSON.parse(body)
+    var rate = object[0].rate
+    console.log(rate)
 });
-
-// when the connection is open...
-connection.onopen = function (session) {
-
-        // subscribe to market event
-        function marketEvent (args,kwargs) {
-                //display real time market events
-                console.log(args);
-        }
-
-        //subscribe to ticker event
-        function tickerEvent (args,kwargs) {
-                //display real time ticker events 
-                // args = [currencyPair, last, lowestAsk, highestBid, percentChange, baseVolume, quoteVolume, isFrozen, 24hrHigh, 24hrLow]
-                console.log(args);
-        }
-
-        // session.subscribe('BTC_ETH', marketEvent);
-        // session.subscribe('ticker', tickerEvent);
-
-}
- 
-connection.onclose = function () {
-  console.log("Websocket connection closed");
-}
-                       
-connection.open();

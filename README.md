@@ -13,12 +13,12 @@ For backend or full stack dev applicants:
     Can simply print out results in console log.
 
 Extra points for: 
-using ES6/ES7 
-tracking results over time
-integrating data from more exchanges
-display how much more Joe will get when he makes each trade at exchange A vs exchange B
-make results accessible via an api
-display results in web page
+- using ES6/ES7 
+- tracking results over time
+- integrating data from more exchanges
+- display how much more Joe will get when he makes each trade at exchange A vs exchange B
+- make results accessible via an api
+- display results in web page
 
 
 sources:
