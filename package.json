@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/leon-do/shapeshift-challenge#readme",
   "dependencies": {
+    "async": "^2.3.0",
     "request": "^2.81.0"
   }
 }
