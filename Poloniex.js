@@ -2,16 +2,12 @@
 
 var request = require('request');
 
+    var url = `https://poloniex.com/public?command=returnTicker`
 
-var date = new Date();
-var startDate = Math.floor(date.getTime()/1000) - 100;
-var endDate = Math.floor(date.getTime()/1000)
-var pair = 'BTC_DASH'
+    request(url, function (error, response, body) {
+        var object = JSON.parse(body)
+        console.log(object.BTC_ETH)
+    });
 
-var url = `https://poloniex.com/public?command=returnTradeHistory&currencyPair=${pair}&start=${startDate}&end=${endDate}`
 
-request(url, function (error, response, body) {
-    var object = JSON.parse(body)
-    var rate = object[0].rate
-    console.log(rate)
-});
+

@@ -1,8 +1,8 @@
 {
   "name": "shapeshift-challenge",
   "version": "1.0.0",
-  "description": "Joe wants to send <20 bitcoin> to each of his three kids none of which have a bitcoin wallet. They have each requested that he send them coin in their favorite currencies:  Ethereum, Litecoin, and DASH.",
-  "main": "server.js",
+  "description": "Shapeshift Challenge build by Leon",
+  "main": "bittrex.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -11,14 +11,20 @@
     "type": "git",
     "url": "git+https://github.com/leon-do/shapeshift-challenge.git"
   },
-  "author": "",
+  "keywords": [
+    "crypto",
+    "ether",
+    "eth",
+    "btc",
+    "rate"
+  ],
+  "author": "Leon Do",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/leon-do/shapeshift-challenge/issues"
   },
   "homepage": "https://github.com/leon-do/shapeshift-challenge#readme",
   "dependencies": {
-    "autobahn": "^0.12.0",
-    "gdax": "^0.4.2"
+    "request": "^2.81.0"
   }
 }
