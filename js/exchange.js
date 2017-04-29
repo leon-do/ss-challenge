@@ -12,7 +12,7 @@
         - (relatively) easy to understand
 
     Cons of this structure:
-        - not performant. Some data structures can be retrieved in one call. This method may call the same data structure multiple times.
+        - not performant. Some data structures can be retrieved in one call. This method may call the same data multiple times.
 
 */
 

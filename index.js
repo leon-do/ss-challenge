@@ -10,16 +10,13 @@ var bestRate = require('./js/bestRate.js')
 
     exchange is a funciton from exchange.js
     exchange takes in two arguments, coin1 and coin2 and returns an array with different rates from different exchanges.
-    The different exchanges are poloniex and bittrex. exchange.js is built to scale
 
 
 */
 
 
-
-
 exchange.rates('BTC','ETH', function(arr){
-    // bestRate calls funtion from bestRate.js 
+    // bestRate calls function from bestRate.js 
     // bestRate takes in an array as an argument and returns the index with the lowest rate
     // arr = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
     bestRate.indexOfLowestVal(arr, function(index){
