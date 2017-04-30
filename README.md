@@ -6,11 +6,16 @@
 2. Go to:
 http://localhost:3000/
 
+
 ### API endpoints:
 http://localhost:3000/exchange
+
 http://localhost:3000/history/BTC_LTC
+
 http://localhost:3000/history/BTC_DASH
+
 http://localhost:3000/history/BTC_ETH
+
 
 ### Instructions
 Joe wants to send <20 bitcoin> to each of his three kids none of which have a bitcoin wallet. They have each requested that he send them coin in their favorite currencies: 
