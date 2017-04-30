@@ -1,53 +1,60 @@
-var exchange = require('./js/exchange.js')
-var bestRate = require('./js/bestRate.js')
+/*
 
-
-/* 
-
-    The flow:
-    exchange.rates for BTC and ETH will return array = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
-    passing the array through the function bestRate will return the best rate out of that array { rate: 0.05247765, name: 'bittrex' }
-
-    exchange is a funciton from exchange.js
-    exchange takes in two arguments, coin1 and coin2 and returns an array with different rates from different exchanges.
+poloniex
+Bittrex: https://bittrex.com/api/v1.1/public/getmarkethistory?market=BTC-DOGE&count=4 
+yobit: https://yobit.net/api/3/ticker/${coin2.toString().toLowerCase()}_${coin1.toString().toLowerCase()}
 
 */
 
+var request = require('request');
+var async = require('async')
 
-exchange.rates('BTC','ETH', function(arr){
-    // bestRate calls function from bestRate.js 
-    // bestRate takes in an array as an argument and returns the index with the lowest rate
-    // arr = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
-    bestRate.indexOfLowestVal(arr, function(index){
-        //index from the callback is the index with the lowest rate
-        console.log(`
+var coin1 = 'BTC'
+var coin2 = 'LTC'
 
-            BTC to ETH exchange rate: ${JSON.stringify(arr)}
-            Between Poloniex and Bittrex, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
+request(`https://poloniex.com/public?command=returnTradeHistory&currencyPair=${coin1}_${coin2}&start=${Math.floor(new Date().getTime()/1000) - 200}&end=${Math.floor(new Date().getTime()/1000)}`, function (error, response, body) {
 
-        `)
+    // loop through the array and update date and rate
+    // example: { date: 1493539282000, rate: '0.01225700' }
+    var arr = JSON.parse(body).map(function(obj) { 
+       var newObject = {}
+       newObject.date = new Date(obj.date).getTime() //converting iso 8601 to unix
+       newObject.rate = obj.rate
+       return newObject
     })
-})
 
-exchange.rates('BTC','LTC', function(arr){
-    bestRate.indexOfLowestVal(arr, function(index){
-        console.log(`
+    console.log(arr[0])
+});
 
-            BTC to LTC exchange rate: ${JSON.stringify(arr)}
-            Between Poloniex and Bittrex, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
 
-        `)    
+request(`https://bittrex.com/api/v1.1/public/getmarkethistory?market=${coin1}-${coin2}&count=4 `, function (error, response, body) {
+
+    var arr = JSON.parse(body).result.map(function(obj) { 
+       var newObject = {}
+       newObject.date = new Date(obj.TimeStamp).getTime() //converting iso 8601 to unix
+       newObject.rate = obj.Price
+       return newObject
     })
-})
 
-exchange.rates('BTC','DASH', function(arr){
-    bestRate.indexOfLowestVal(arr, function(index){
-        console.log(`
+    console.log(arr[0])
+});
 
-            BTC to DASH exchange rate: ${JSON.stringify(arr)}
-            Between Poloniex and Bittrex, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
 
-        `)    
+request(`https://yobit.net/api/2/ltc_btc/trades`, function (error, response, body) {
+
+    var arr = JSON.parse(body).map(function(obj){
+        var newObject = {}
+        newObject.date = obj.date * 1000
+        newObject.rate = obj.price
+        return newObject
     })
-})
+    console.log(arr[0])
+});
+
+
+
+
+
+
+
 
