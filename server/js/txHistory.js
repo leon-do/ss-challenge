@@ -39,7 +39,7 @@ exports.list = function(coin1, coin2, cb){
 
       bittrex: function(callback){
 
-          request(`https://bittrex.com/api/v1.1/public/getmarkethistory?market=${coin1}-${coin2}&count=4 `, function (error, response, body) {
+          request(`https://bittrex.com/api/v1.1/public/getmarkethistory?market=${coin1}-${coin2}&count=4`, function (error, response, body) {
 
               var arr = JSON.parse(body).result.map(function(obj) { 
                 var date = obj.TimeStamp.slice(0,19) + '.000Z'
