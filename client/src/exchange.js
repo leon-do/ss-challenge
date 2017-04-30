@@ -1,6 +1,7 @@
 // this displays the best exchange
 /*
 
+data = 
 "BTC-ETH": {
     "exchangeName": "yobit",
     "rate": 0.05030001
