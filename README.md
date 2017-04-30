@@ -37,6 +37,7 @@ Ethereum, Litecoin, and DASH.
 Joe wants to get the best rates possible when he converts the coins to give his children. Write a web app that will find out what the best exchanges would be for each of these trades. The app should talk to two exchange (some suggestions: BTC-E, Poloniex, Bittrex) api's to get real data. 
 
 The results should display what the exchange rate is at all the exchanges for each of the 3 trades Joe want do and highlight which is the best rate at each.
+    - listed in the console
 
 Other considerations:
 For backend or full stack dev applicants:

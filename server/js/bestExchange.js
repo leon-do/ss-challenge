@@ -81,7 +81,7 @@ exports.lowestRate = function(cb){
     },
 
         function(error, results){
-            //expost results for another js file
+            //expose results for another js file
             cb(results)
         }
     )
