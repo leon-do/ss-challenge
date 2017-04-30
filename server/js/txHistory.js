@@ -19,12 +19,11 @@ exports.list = function(cb){
 
           request(`https://poloniex.com/public?command=returnTradeHistory&currencyPair=${coin1}_${coin2}&start=${Math.floor(new Date().getTime()/1000) - 200}&end=${Math.floor(new Date().getTime()/1000)}`, function (error, response, body) {
               // loop through the array and update date and rate
-              // example: { date: 1493539282000, rate: '0.01225700' }
+              // [  [date, rate], [date, rate]... ]
+              // example: [ [1493539282000,0.01225700] ]
+              // data is built this way to easily graph on client side
               var arr = JSON.parse(body).map(function(obj) { 
-                 var newObject = {}
-                 newObject.date = new Date(obj.date).getTime() //converting iso 8601 to unix
-                 newObject.rate = obj.rate
-                 return newObject
+                 return [new Date(obj.date).getTime(), parseFloat(obj.rate)]
               })
               callback(error, arr)
 
@@ -39,10 +38,7 @@ exports.list = function(cb){
           request(`https://bittrex.com/api/v1.1/public/getmarkethistory?market=${coin1}-${coin2}&count=4 `, function (error, response, body) {
 
               var arr = JSON.parse(body).result.map(function(obj) { 
-                 var newObject = {}
-                 newObject.date = new Date(obj.TimeStamp).getTime() //converting iso 8601 to unix
-                 newObject.rate = obj.Price
-                 return newObject
+                 return [new Date(obj.TimeStamp).getTime(), obj.Price]
               })
               callback(error, arr)
 
@@ -56,10 +52,7 @@ exports.list = function(cb){
           request(`https://yobit.net/api/2/ltc_btc/trades`, function (error, response, body) {
 
               var arr = JSON.parse(body).map(function(obj){
-                  var newObject = {}
-                  newObject.date = obj.date * 1000
-                  newObject.rate = obj.price
-                  return newObject
+                  return [obj.date * 1000, obj.price]
               })
               callback(error, arr)
 
