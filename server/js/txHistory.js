@@ -1,7 +1,7 @@
 /*
 
 This does 3 API calls to get back transaction history
-The date is then normlized from ISO 8601 to universal time
+The date is then normlized to standardize date format YYYY-DD-MMT0HH:MM:SS:SSSZ (2017-04-30T07:46:38)
 
 */
 
@@ -15,6 +15,7 @@ exports.list = function(coin1, coin2, cb){
 
       poloniex: function(callback){
 
+          //poloniex api requires a start and end date
           var d = new Date();
           var startDate = (d.getTime() - d.getTimezoneOffset() - 1000000)/1000
           var endDate = (d.getTime() - d.getTimezoneOffset())/1000
@@ -22,8 +23,7 @@ exports.list = function(coin1, coin2, cb){
           request(`https://poloniex.com/public?command=returnTradeHistory&currencyPair=${coin1}_${coin2}&start=${startDate}&end=${endDate}`, function (error, response, body) {
               // loop through the array and update date and rate
               // [  [date, rate], [date, rate]... ]
-              // example: [ [1493539282000,0.01225700] ]
-              // data is built this way to easily graph on client side
+              // data is built this way to easily graph on client side --> [ [x1,y1], [x2,y2] ...]
               var arr = JSON.parse(body).map(function(obj) { 
                 //standardize date format 2017-04-30 07:46:38 --> 2017-04-30T07:46:000Z
                 var date = obj.date.replace(' ','T').slice(0,19) + '.000Z'
@@ -80,16 +80,4 @@ exports.list = function(coin1, coin2, cb){
   })
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 

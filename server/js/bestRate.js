@@ -1,6 +1,8 @@
 /*
  given an array of rates, the function will find the lowest rate and return the index
-data structure: [ { rate: 0.05256994, name: 'poloniex' }, { rate: 0.0525892, name: 'bittrex' } ]
+
+ Example:
+arr = [ { rate: 0.000001, name: 'poloniex' }, { rate: 0.99999, name: 'bittrex' } ]
 returns minIndex = 0
 */
 
