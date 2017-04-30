@@ -21,8 +21,8 @@ http://localhost:3000/history/BTC_DASH
 http://localhost:3000/history/BTC_ETH
 
 
-### Instructions
-Joe wants to send <20 bitcoin> to each of his three kids none of which have a bitcoin wallet. They have each requested that he send them coin in their favorite currencies: 
+### Task
+Joe wants to send 20 bitcoin to each of his three kids none of which have a bitcoin wallet. They have each requested that he send them coin in their favorite currencies: 
 Ethereum, Litecoin, and DASH. 
 
 Joe wants to get the best rates possible when he converts the coins to give his children. Write a web app that will find out what the best exchanges would be for each of these trades. The app should talk to two exchange (some suggestions: BTC-E, Poloniex, Bittrex) api's to get real data. 
