@@ -8,7 +8,7 @@ http://localhost:3000/
 
 
 ### Server Diagram
-![alt tag](http://i.imgur.com/ClfsFOQ.png)
+![alt tag](https://github.com/leon-do/shapeshift-challenge/blob/master/server/diagram/nodeJS%20diagram.png)
 
 
 ### API endpoints:
