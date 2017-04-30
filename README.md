@@ -43,8 +43,9 @@ Extra points for:
 - display how much more Joe will get when he makes each trade at exchange A vs exchange B
     - if    1 BTC = $1000 and 1 ETH = $50
     - then  1 BTC = 20 ETH (1000/50)
-    - if    Joe has 20 BTC && decides to trade to ETH for his son, 
-    - then  his son will recieve 20 * 20 = 400 ETH
+    - if    Joe has 20 BTC && decides to trade to ETH for his kid, 
+    - then  his kid will recieve 20 * 20 = 400 ETH
+    - his kid very lucky
 - make results accessible via an api
     - https://shapeshift-challenge.herokuapp.com/exchange
     - https://shapeshift-challenge.herokuapp.com/history/BTC_LTC
