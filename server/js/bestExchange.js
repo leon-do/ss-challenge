@@ -1,8 +1,3 @@
-var async = require('async')
-var allRates = require('./allRates.js')
-var bestRate = require('./bestRate.js')
-
-
 /* 
 
     The flow:
@@ -13,6 +8,11 @@ var bestRate = require('./bestRate.js')
     exchange takes in two arguments, coin1 and coin2 and returns an array with different rates from different exchanges.
 
 */
+
+
+var async = require('async')
+var allRates = require('./allRates.js')
+var bestRate = require('./bestRate.js')
 
 exports.lowestRate = function(cb){
 

@@ -3,15 +3,13 @@ var request = require('request');
 var coin1 = 'BTC'
 var coin2 = 'LTC'
 
-var date = new Date();
-var startDate = (date.getTime() - date.getTimezoneOffset() - 100000)/1000
-var endDate = (date.getTime() - date.getTimezoneOffset())/1000
 
-console.log(endDate)
+request(`https://yobit.net/api/2/${coin2.toLowerCase()}_${coin1.toLowerCase()}/trades`, function (error, response, body) {
 
-request(`https://poloniex.com/public?command=returnTradeHistory&currencyPair=${coin1}_${coin2}&start=${startDate}&end=${endDate}`, function (error, response, body) {
-    // loop through the array and update date and rate
-    // example: { date: 1493539282000, rate: '0.01225700' }
-    console.log(body)
-})
+  var arr = JSON.parse(body).map(function(obj){ 
+      var date = new Date(obj.date * 1000)
+      return [date, obj.price]
+  })
+  console.log(arr)
+});
 

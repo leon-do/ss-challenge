@@ -24,8 +24,8 @@ requestHistoryLTC.onload = function() {
             },
             xAxis: {
                 type: 'datetime',
-                title: {
-                    text: ''
+                labels: {
+                    enabled:false
                 }
             },
             yAxis: {

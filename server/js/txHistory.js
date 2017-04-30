@@ -54,7 +54,7 @@ exports.list = function(coin1, coin2, cb){
 
       yobit: function(callback){
 
-          request(`https://yobit.net/api/2/ltc_btc/trades`, function (error, response, body) {
+          request(`https://yobit.net/api/2/${coin2.toLowerCase()}_${coin1.toLowerCase()}/trades`, function (error, response, body) {
 
               var arr = JSON.parse(body).map(function(obj){ 
                   var date = new Date(obj.date * 1000)

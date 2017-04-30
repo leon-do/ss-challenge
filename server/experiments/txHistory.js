@@ -25,7 +25,6 @@ async.parallel({
           request(`https://poloniex.com/public?command=returnTradeHistory&currencyPair=${coin1}_${coin2}&start=${startDate}&end=${endDate}`, function (error, response, body) {
             // loop through the array and update date and rate
             // example: { date: 1493539282000, rate: '0.01225700' }
-            console.log(response)
             var arr = JSON.parse(body).map(function(obj) { 
                var newObject = {}
                newObject.date = new Date(obj.date).getTime() //converting iso 8601 to unix
