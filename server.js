@@ -21,13 +21,13 @@
 
 */
 
-var bestExchange = require('./js/bestExchange.js')
-var txHistory = require('./js/txHistory.js')
+var bestExchange = require('./server/js/bestExchange.js')
+var txHistory = require('./server/js/txHistory.js')
 var express = require('express');
 var app = express();
 
 //index.html
-app.use(express.static(__dirname + "/app"));
+app.use(express.static(__dirname + "/client"));
 
 // http://localhost:3000/exchange
 app.get('/exchange', function(req,res){
