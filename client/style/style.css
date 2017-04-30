@@ -3,9 +3,9 @@
 body{
     background-color: #2E2E2F;
     text-transform: uppercase;
+    font-family: 'Unica One', cursive;
 }
 .summary{
     text-align: center;
     color: white;
-    font-family: 'Unica One', cursive;
 }

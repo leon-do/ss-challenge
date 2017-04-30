@@ -1,5 +1,6 @@
-// this displays the best exchange
 /*
+
+display the lowest ask rate below the graph
 
 data = 
 "BTC-ETH": {
@@ -28,9 +29,9 @@ requestExchange.onload = function() {
 
         //data from exchange
         var data = JSON.parse(requestExchange.responseText)
-        document.getElementById('bthEthSummary').innerHTML = `Between Poloniex, Yobit and Bittrex, the lowest ask is: ${data['BTC-ETH'].exchangeName} at ${data['BTC-ETH'].rate}`
-        document.getElementById('bthLtcSummary').innerHTML = `Between Poloniex, Yobit and Bittrex, the lowest ask is: ${data['BTC-LTC'].exchangeName} at ${data['BTC-LTC'].rate}`
-        document.getElementById('bthDashSummary').innerHTML = `Between Poloniex, Yobit and Bittrex, the lowest ask is: ${data['BTC-DASH'].exchangeName} at ${data['BTC-DASH'].rate}`
+        document.getElementById('bthEthSummary').innerHTML =  `Between Poloniex, Yobit and Bittrex, the lowest ask is: <br> ${data['BTC-ETH'].exchangeName} at ${data['BTC-ETH'].rate}%`
+        document.getElementById('bthLtcSummary').innerHTML =  `Between Poloniex, Yobit and Bittrex, the lowest ask is: <br> ${data['BTC-LTC'].exchangeName} at ${data['BTC-LTC'].rate}%`
+        document.getElementById('bthDashSummary').innerHTML = `Between Poloniex, Yobit and Bittrex, the lowest ask is: <br> ${data['BTC-DASH'].exchangeName} at ${data['BTC-DASH'].rate}%`
 
     }    
 }
