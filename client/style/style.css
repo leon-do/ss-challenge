@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Unica+One');
 
 body{
-    background-color: #2E2E2F
+    background-color: #2E2E2F;
+    text-transform: uppercase;
 }
 .summary{
     text-align: center;
     color: white;
     font-family: 'Unica One', cursive;
-    text-transform: uppercase;
 }
