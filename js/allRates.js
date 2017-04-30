@@ -1,9 +1,12 @@
 /*
 
     The flow:
+
     call out to poloniex and retrieve data1
     call out to Bittrex and retrieve data2
-    the data is then stored in an object called results = {data1, data2}
+    call out to yobit and retrieve data3
+
+    the data is then stored in an object called results = {data1, data2, data3}
     results is then parsed and pushed into an array called lowestAsk = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
     lowestAsk passed back in a callback for use
 
