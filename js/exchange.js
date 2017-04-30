@@ -78,13 +78,13 @@ exports.rates = function(coin1, coin2, cb){
         var lowestAsk = []
         lowestAsk.push({
             rate: parseFloat(results.poloniex.lowestAsk),
-            name: "poloniex"})
+            name: 'poloniex'})
         lowestAsk.push({
             rate: parseFloat(results.bittrex.result.Ask),
-            name: "bittrex"})
+            name: 'bittrex'})
         lowestAsk.push({
             rate: parseFloat(results.yobit.low),
-            name: "yobit"})        
+            name: 'yobit'})        
         // lowestAsk = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
         cb(lowestAsk)
     });
