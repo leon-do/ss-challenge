@@ -1,5 +1,5 @@
-var index = require('./js/bestExchange.js')
+var exchange = require('./js/bestExchange.js')
 
-index.lowestRate(function(data){
+exchange.lowestRate(function(data){
     console.log(data)
 })

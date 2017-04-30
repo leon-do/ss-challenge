@@ -1,5 +1,5 @@
 var async = require('async')
-var exchange = require('./exchange.js')
+var allRates = require('./allRates.js')
 var bestRate = require('./bestRate.js')
 
 
@@ -20,7 +20,7 @@ exports.lowestRate = function(cb){
 
         'BTC-ETH': function(callback){
 
-            exchange.rates('BTC','ETH', function(arr){
+            allRates.rates('BTC','ETH', function(arr){
                 // bestRate calls function from bestRate.js 
                 // bestRate takes in an array as an argument and returns the index with the lowest rate
                 // arr = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
@@ -43,7 +43,7 @@ exports.lowestRate = function(cb){
 
         'BTC-LTC': function(callback){
 
-            exchange.rates('BTC','LTC', function(arr){
+            allRates.rates('BTC','LTC', function(arr){
                 bestRate.indexOfLowestVal(arr, function(index){
                     console.log(`
 
@@ -60,7 +60,7 @@ exports.lowestRate = function(cb){
 
         'BTC-DASH': function(callback){
 
-            exchange.rates('BTC','DASH', function(arr){
+            allRates.rates('BTC','DASH', function(arr){
                 bestRate.indexOfLowestVal(arr, function(index){
                     console.log(`
 
