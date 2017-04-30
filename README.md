@@ -1,7 +1,11 @@
 # shapeshift-challenge
 
+### Demo
+![alt tag](https://github.com/leon-do/shapeshift-challenge/blob/master/server/diagram/screenshot.png)
+
+
 ### Getting Started
-1. Install npm package `$ node install`
+1. Install npm package `$ npm i`
 2. Start the server:
 `$ node server.js`
 3. Go to:
