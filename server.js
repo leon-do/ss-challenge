@@ -6,8 +6,6 @@
           'BTC-DASH': { exchangeName: 'yobit', rate: 0.06157018 } }
 
 
-
-
     txHistory lists transaction history date and rate
     data =
     { 
@@ -37,14 +35,27 @@ app.get('/exchange', function(req,res){
     })
 })
 
-// http://localhost:3000/history
-app.get('/history', function(req,res){
-    txHistory.list(function(data){
+// http://localhost:3000/history/BTC_LTC
+app.get('/history/BTC_LTC', function(req,res){
+    txHistory.list('BTC', 'LTC',function(data){
         res.send(data)
     })
 })
 
 
+// http://localhost:3000/history/BTC_LTC
+app.get('/history/BTC_ETH', function(req,res){
+    txHistory.list('BTC', 'ETH',function(data){
+        res.send(data)
+    })
+})
+
+// http://localhost:3000/history/BTC_DASH
+app.get('/history/BTC_DASH', function(req,res){
+    txHistory.list('BTC', 'DASH',function(data){
+        res.send(data)
+    })
+})
 
 app.listen(process.env.PORT || 3000, function(){
     console.log("listening on port port 3000")

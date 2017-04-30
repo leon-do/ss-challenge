@@ -8,17 +8,15 @@ The date is then normlized from ISO 8601 to universal time
 var request = require('request');
 var async = require('async')
 
-var coin1 = 'BTC'
-var coin2 = 'LTC'
 
-exports.list = function(cb){
+exports.list = function(coin1, coin2, cb){
 
   async.parallel({
 
       poloniex: function(callback){
 
           var d = new Date();
-          var startDate = (d.getTime() - d.getTimezoneOffset() - 100000)/1000
+          var startDate = (d.getTime() - d.getTimezoneOffset() - 1000000)/1000
           var endDate = (d.getTime() - d.getTimezoneOffset())/1000
 
           request(`https://poloniex.com/public?command=returnTradeHistory&currencyPair=${coin1}_${coin2}&start=${startDate}&end=${endDate}`, function (error, response, body) {

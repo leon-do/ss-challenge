@@ -1,26 +1,26 @@
 // this displays the graph
 
-var requestHistory = new XMLHttpRequest();
-requestHistory.open('GET', '/history', true);
+var requestHistoryETH = new XMLHttpRequest();
+requestHistoryETH.open('GET', '/history/BTC_ETH', true);
 
 
-requestHistory.onload = function() {
-    if (requestHistory.status >= 200 && requestHistory.status < 400) {
+requestHistoryETH.onload = function() {
+    if (requestHistoryETH.status >= 200 && requestHistoryETH.status < 400) {
 
         //data for the graph
-        var data = JSON.parse(requestHistory.responseText);
+        var data = JSON.parse(requestHistoryETH.responseText);
 
 
         //building the graph
-        Highcharts.chart('container', {
+        Highcharts.chart('btcEth', {
             chart: {
                 type: 'spline'
             },
             title: {
-                text: 'Last 50 Exchange Rates'
+                text: 'BTC - ETH'
             },
             subtitle: {
-                text: ''
+                text: 'Last 100 Exchange Rates'
             },
             xAxis: {
                 type: 'datetime',
@@ -31,7 +31,7 @@ requestHistory.onload = function() {
             yAxis: {
                 title: {
                     text: 'Rate (%)'
-                },
+                }
             },
             plotOptions: {
                 spline: {
@@ -43,13 +43,13 @@ requestHistory.onload = function() {
 
             series: [{
                 name: 'Bittrex',
-                data: data.bittrex.reverse().splice(1,50)
+                data: data.bittrex.reverse().splice(1,100)
             }, {
                 name: 'Poloniex',
-                data: data.poloniex.reverse().splice(0,50)
+                data: data.poloniex.reverse().splice(0,100)
             }, {
                 name: 'Yobit',
-                data: data.yobit.reverse().splice(0,50)
+                data: data.yobit.reverse().splice(0,100)
             }]
 });
     } else {
@@ -57,4 +57,4 @@ requestHistory.onload = function() {
     }
 };
 
-requestHistory.send();
+requestHistoryETH.send();
