@@ -27,7 +27,6 @@ requestExchange.onload = function() {
     if (requestExchange.status >= 200 && requestExchange.status < 400) {
 
         //data from exchange
-
         var data = JSON.parse(requestExchange.responseText)
         document.getElementById('bthEthSummary').innerHTML = `Between Poloniex, Yobit and Bittrex, the lowest ask is: ${data['BTC-ETH'].exchangeName} at ${data['BTC-ETH'].rate}`
         document.getElementById('bthLtcSummary').innerHTML = `Between Poloniex, Yobit and Bittrex, the lowest ask is: ${data['BTC-LTC'].exchangeName} at ${data['BTC-LTC'].rate}`
