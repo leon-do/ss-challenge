@@ -17,9 +17,15 @@ async.parallel({
 
     poloniex: function(callback){
 
-        request(`https://poloniex.com/public?command=returnTradeHistory&currencyPair=${coin1}_${coin2}&start=${Math.floor(new Date().getTime()/1000) - 200}&end=${Math.floor(new Date().getTime()/1000)}`, function (error, response, body) {
+          var date = new Date();
+          date.getTimezoneOffset()
+          var startDate = date.getTime() - date.getTimezoneOffset() - 1000
+          var endDate = date.getTime() - date.getTimezoneOffset()
+
+          request(`https://poloniex.com/public?command=returnTradeHistory&currencyPair=${coin1}_${coin2}&start=${startDate}&end=${endDate}`, function (error, response, body) {
             // loop through the array and update date and rate
             // example: { date: 1493539282000, rate: '0.01225700' }
+            console.log(response)
             var arr = JSON.parse(body).map(function(obj) { 
                var newObject = {}
                newObject.date = new Date(obj.date).getTime() //converting iso 8601 to unix
@@ -36,7 +42,7 @@ async.parallel({
 
     bittrex: function(callback){
 
-        request(`https://bittrex.com/api/v1.1/public/getmarkethistory?market=${coin1}-${coin2}&count=4 `, function (error, response, body) {
+        request(`https://bittrex.com/api/v1.1/public/getmarkethistory?market=${coin1}-${coin2}&count=4`, function (error, response, body) {
 
             var arr = JSON.parse(body).result.map(function(obj) { 
                var newObject = {}

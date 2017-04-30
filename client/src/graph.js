@@ -1,14 +1,15 @@
-var request = new XMLHttpRequest();
-request.open('GET', '/history', true);
+// this displays the graph
+
+var requestHistory = new XMLHttpRequest();
+requestHistory.open('GET', '/history', true);
 
 
-request.onload = function() {
-    if (request.status >= 200 && request.status < 400) {
+requestHistory.onload = function() {
+    if (requestHistory.status >= 200 && requestHistory.status < 400) {
 
         //data for the graph
-        var data = JSON.parse(request.responseText);
+        var data = JSON.parse(requestHistory.responseText);
 
-        console.log(data.poloniex.slice(0,100).reverse())
 
         //building the graph
         Highcharts.chart('container', {
@@ -16,7 +17,7 @@ request.onload = function() {
                 type: 'spline'
             },
             title: {
-                text: 'Recent Exchange Rate History'
+                text: 'Last 50 Exchange Rates'
             },
             subtitle: {
                 text: ''
@@ -31,7 +32,6 @@ request.onload = function() {
                 title: {
                     text: 'Rate (%)'
                 },
-                min: 0
             },
             plotOptions: {
                 spline: {
@@ -43,13 +43,13 @@ request.onload = function() {
 
             series: [{
                 name: 'Bittrex',
-                data: data.bittrex.slice(0,100).reverse()
+                data: data.bittrex.reverse().splice(1,50)
             }, {
                 name: 'Poloniex',
-                data: data.poloniex.slice(0,100).reverse()
+                data: data.poloniex.reverse().splice(0,50)
             }, {
                 name: 'Yobit',
-                data: data.yobit.slice(0,100).reverse()
+                data: data.yobit.reverse().splice(0,50)
             }]
 });
     } else {
@@ -57,4 +57,4 @@ request.onload = function() {
     }
 };
 
-request.send();
+requestHistory.send();
