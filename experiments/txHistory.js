@@ -11,6 +11,7 @@ var async = require('async')
 var coin1 = 'BTC'
 var coin2 = 'LTC'
 
+
 async.parallel({
 
 

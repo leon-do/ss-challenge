@@ -68,7 +68,7 @@ exports.lowestRate = function(cb){
                         Between Poloniex and Bittrex, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
 
                     `)   
-                callback(null, arr[index].rate) 
+                callback(null, {exchangeName: arr[index].name, rate: arr[index].rate})
                 })
             })
 
