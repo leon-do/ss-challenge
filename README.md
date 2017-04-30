@@ -1,9 +1,10 @@
 # shapeshift-challenge
 
 ### Getting Started
-1. Start the server:
+1. Install npm package `$ node install`
+2. Start the server:
 `$ node server.js`
-2. Go to:
+3. Go to:
 http://localhost:3000/
 
 
