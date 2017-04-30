@@ -11,7 +11,7 @@ http://localhost:3000/
 ![alt tag](https://github.com/leon-do/shapeshift-challenge/blob/master/server/diagram/nodeJS%20diagram.png)
 
 
-### API endpoints:
+### Results Accessible APIs:
 http://localhost:3000/exchange
 
 http://localhost:3000/history/BTC_LTC
@@ -37,8 +37,16 @@ For backend or full stack dev applicants:
 Extra points for: 
 - using ES6/ES7 
 - tracking results over time
+    - Graph displays last 100 exchange rates
 - integrating data from more exchanges
+    - Poloniex, Bitrex and Yobit
 - display how much more Joe will get when he makes each trade at exchange A vs exchange B
+    - answer = (20btc / (btc_eth_rate_of_exchangeA)) - (20btc / (btc_eth_rate_of_exchangeB))
 - make results accessible via an api
+    - http://localhost:3000/exchange
+    - http://localhost:3000/history/BTC_LTC
+    - http://localhost:3000/history/BTC_DASH
+    - http://localhost:3000/history/BTC_ETH
 - display results in web page
+    - http://localhost:3000/
 
