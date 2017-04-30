@@ -41,7 +41,10 @@ Extra points for:
 - integrating data from more exchanges
     - Poloniex, Bitrex and Yobit
 - display how much more Joe will get when he makes each trade at exchange A vs exchange B
-    - answer = (20btc / (btc_eth_rate_of_exchangeA)) - (20btc / (btc_eth_rate_of_exchangeB))
+    - if    1 BTC = $1000 and 1 ETH = $50
+    - then  1 BTC = 20 ETH (1000/50)
+    - if    Joe has 20 BTC && decides to trade to ETH, 
+    - then  he will recieve 20 * 20 = 400 ETH
 - make results accessible via an api
     - https://shapeshift-challenge.herokuapp.com/exchange
     - https://shapeshift-challenge.herokuapp.com/history/BTC_LTC
@@ -51,3 +54,6 @@ Extra points for:
     - http://localhost:3000/
     - https://shapeshift-challenge.herokuapp.com/
 
+## Notes
+
+https://info.shapeshift.io/blog/2016/01/21/shapeshift-101-how-calculate-instant-rate
