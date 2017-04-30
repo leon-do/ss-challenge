@@ -19,7 +19,9 @@
 
 */
 
+// bestExchange gets the lowest rates
 var bestExchange = require('./server/js/bestExchange.js')
+// txHistory returns the 100 most recent transactions
 var txHistory = require('./server/js/txHistory.js')
 var express = require('express');
 var app = express();
@@ -29,7 +31,9 @@ app.use(express.static(__dirname + "/client"));
 
 // http://localhost:3000/exchange
 app.get('/exchange', function(req,res){
+    // bestExchange.lowestRate gets the lowst Ask Rate rates from poloniex, yobit and bitrex
     bestExchange.lowestRate(function(data){
+        // the lowest rates are stored into the object called data
         res.send(data)
     })
 })

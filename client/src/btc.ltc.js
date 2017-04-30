@@ -3,7 +3,7 @@
 var requestHistoryLTC = new XMLHttpRequest();
 requestHistoryLTC.open('GET', '/history/BTC_LTC', true);
 
-
+//on load, get BTC_LTC data for the graph.
 requestHistoryLTC.onload = function() {
     if (requestHistoryLTC.status >= 200 && requestHistoryLTC.status < 400) {
 

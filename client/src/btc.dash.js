@@ -3,7 +3,7 @@
 var requestHistoryDash = new XMLHttpRequest();
 requestHistoryDash.open('GET', '/history/BTC_DASH', true);
 
-
+//on load, get BTC_DASH data for the graph.
 requestHistoryDash.onload = function() {
     if (requestHistoryDash.status >= 200 && requestHistoryDash.status < 400) {
 

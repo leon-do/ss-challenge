@@ -28,18 +28,20 @@ exports.rates = function(coin1, coin2, cb){
     // run the API calls in parallel
     async.parallel({
 
-        //API call to poloniex
+        //API call to poloniex using request
         poloniex: function(callback){
 
-            // call to get poloniex ticker
+            // API call to get poloniex ticker
             request('https://poloniex.com/public?command=returnTicker', function (error, response, body) {
+                //convert string to an object
                 var object = JSON.parse(body)
+                // parse the info for callback. This will be displayed in the results (at the bottom of this page)
                 callback(error, object[`${coin1}_${coin2}`])
             });
 
 
         },
-        // API call to Bittrex
+        // API call to Bittrex using request
         bittrex: function(callback){
 
             // call to get Bittrex ticker
@@ -50,7 +52,7 @@ exports.rates = function(coin1, coin2, cb){
 
         },
 
-
+        // API call to yobit using request
         yobit: function(callback){
 
             request(`https://yobit.net/api/3/ticker/${coin2.toString().toLowerCase()}_${coin1.toString().toLowerCase()}`, function (error, response, body) {
@@ -75,7 +77,7 @@ exports.rates = function(coin1, coin2, cb){
 
 
     },
-    // combines all of the api calls into an object called results
+    // combines all of the api calls (above) into an object called results
     function(error, results) {
         // parse the results into a array called lowestAsk. I'm using an array to get the lowest value in O(n) time. This data structure can be optimized
         var lowestAsk = []

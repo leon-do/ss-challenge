@@ -14,12 +14,16 @@ var async = require('async')
 var allRates = require('./allRates.js')
 var bestRate = require('./bestRate.js')
 
+//expose results to other js files (server.js)
 exports.lowestRate = function(cb){
-
+    
+    // run the API calls in parallel
     async.parallel({
 
+        //first API call
         'BTC-ETH': function(callback){
 
+            // get all rates for all exchanges
             allRates.rates('BTC','ETH', function(arr){
                 // bestRate calls function from bestRate.js 
                 // bestRate takes in an array as an argument and returns the index with the lowest rate
@@ -41,6 +45,7 @@ exports.lowestRate = function(cb){
         },
 
 
+        //second api call
         'BTC-LTC': function(callback){
 
             allRates.rates('BTC','LTC', function(arr){
@@ -57,7 +62,7 @@ exports.lowestRate = function(cb){
 
         },
 
-
+        // third api call
         'BTC-DASH': function(callback){
 
             allRates.rates('BTC','DASH', function(arr){

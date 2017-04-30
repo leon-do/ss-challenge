@@ -3,7 +3,7 @@
 var requestHistoryETH = new XMLHttpRequest();
 requestHistoryETH.open('GET', '/history/BTC_ETH', true);
 
-
+//on load, get BTC_ETH data for the graph.
 requestHistoryETH.onload = function() {
     if (requestHistoryETH.status >= 200 && requestHistoryETH.status < 400) {
 
