@@ -27,13 +27,14 @@ Highcharts.theme = {
       style: {
          color: '#E0E0E3',
          textTransform: 'uppercase',
-         fontSize: '20px'
+         fontSize: '40px'
       }
    },
    subtitle: {
       style: {
          color: '#E0E0E3',
-         textTransform: 'uppercase'
+         textTransform: 'uppercase',
+         fontSize: '15px'
       }
    },
    xAxis: {
@@ -73,7 +74,8 @@ Highcharts.theme = {
    tooltip: {
       backgroundColor: 'rgba(0, 0, 0, 0.85)',
       style: {
-         color: '#F0F0F0'
+         color: '#F0F0F0',
+         fontSize: '15px'
       }
    },
    plotOptions: {
