@@ -7,6 +7,9 @@
 http://localhost:3000/
 
 
+![alt tag](./server/diagram/nodeJS diagram.png)
+
+
 ### API endpoints:
 http://localhost:3000/exchange
 
