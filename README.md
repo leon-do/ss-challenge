@@ -45,7 +45,7 @@ Extra points for:
     - then  1 BTC = 20 ETH (1000/50)
     - if    Joe has 20 BTC && decides to trade to ETH for his kid, 
     - then  his kid will recieve 20 * 20 = 400 ETH
-    - his kids are very lucky
+        - his kids are very lucky
 - make results accessible via an api
     - https://shapeshift-challenge.herokuapp.com/exchange
     - https://shapeshift-challenge.herokuapp.com/history/BTC_LTC
