@@ -7,7 +7,9 @@
 http://localhost:3000/
 
 
+### Server Diagram
 ![alt tag](http://i.imgur.com/ClfsFOQ.png)
+
 
 ### API endpoints:
 http://localhost:3000/exchange
