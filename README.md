@@ -20,16 +20,6 @@ http://localhost:3000/
 ![alt tag](https://github.com/leon-do/shapeshift-challenge/blob/master/server/diagram/nodeJS%20diagram.png)
 
 
-### Results Accessible APIs:
-http://localhost:3000/exchange
-
-http://localhost:3000/history/BTC_LTC
-
-http://localhost:3000/history/BTC_DASH
-
-http://localhost:3000/history/BTC_ETH
-
-
 ### Task
 Joe wants to send 20 bitcoin to each of his three kids none of which have a bitcoin wallet. They have each requested that he send them coin in their favorite currencies: 
 Ethereum, Litecoin, and DASH. 
@@ -53,10 +43,11 @@ Extra points for:
 - display how much more Joe will get when he makes each trade at exchange A vs exchange B
     - answer = (20btc / (btc_eth_rate_of_exchangeA)) - (20btc / (btc_eth_rate_of_exchangeB))
 - make results accessible via an api
-    - http://localhost:3000/exchange
-    - http://localhost:3000/history/BTC_LTC
-    - http://localhost:3000/history/BTC_DASH
-    - http://localhost:3000/history/BTC_ETH
+    - https://shapeshift-challenge.herokuapp.com/exchange
+    - https://shapeshift-challenge.herokuapp.com/history/BTC_LTC
+    - https://shapeshift-challenge.herokuapp.com/history/BTC_DASH
+    - https://shapeshift-challenge.herokuapp.com/history/BTC_ETH
 - display results in web page
     - http://localhost:3000/
+    - https://shapeshift-challenge.herokuapp.com/
 

@@ -41,6 +41,7 @@ exports.rates = function(coin1, coin2, cb){
 
 
         },
+        
         // API call to Bittrex using request
         bittrex: function(callback){
 
