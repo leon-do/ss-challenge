@@ -29,7 +29,7 @@ exports.lowestRate = function(cb){
                     console.log(`
 
                         BTC to ETH exchange rate: ${JSON.stringify(arr)}
-                        Between Poloniex and Bittrex, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
+                        Between Poloniex, Bittrex and Yobit, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
 
                     `)
 
@@ -48,7 +48,7 @@ exports.lowestRate = function(cb){
                     console.log(`
 
                         BTC to LTC exchange rate: ${JSON.stringify(arr)}
-                        Between Poloniex and Bittrex, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
+                        Between Poloniex, Bittrex and Yobit, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
 
                     `) 
                 callback(null, {exchangeName: arr[index].name, rate: arr[index].rate})
@@ -65,7 +65,7 @@ exports.lowestRate = function(cb){
                     console.log(`
 
                         BTC to DASH exchange rate: ${JSON.stringify(arr)}
-                        Between Poloniex and Bittrex, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
+                        Between Poloniex, Bittrex and Yobit, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
 
                     `)   
                 callback(null, {exchangeName: arr[index].name, rate: arr[index].rate})

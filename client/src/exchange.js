@@ -29,7 +29,10 @@ requestExchange.onload = function() {
         //data from exchange
 
         var data = JSON.parse(requestExchange.responseText)
-        document.getElementById('exchange').innerHTML = data['BTC-ETH'].rate
+        document.getElementById('bthEthSummary').innerHTML = `Between Poloniex and Bittrex, the lowest ask is: ${data['BTC-ETH'].exchangeName} at ${data['BTC-ETH'].rate}`
+        document.getElementById('bthLtcSummary').innerHTML = `Between Poloniex and Bittrex, the lowest ask is: ${data['BTC-LTC'].exchangeName} at ${data['BTC-LTC'].rate}`
+        document.getElementById('bthDashSummary').innerHTML = `Between Poloniex and Bittrex, the lowest ask is: ${data['BTC-DASH'].exchangeName} at ${data['BTC-DASH'].rate}`
+
     }    
 }
 

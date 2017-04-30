@@ -30,7 +30,6 @@ app.use(express.static(__dirname + "/client"));
 // http://localhost:3000/exchange
 app.get('/exchange', function(req,res){
     bestExchange.lowestRate(function(data){
-        console.log(data)
         res.send(data)
     })
 })
