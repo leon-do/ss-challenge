@@ -29,6 +29,8 @@ requestExchange.onload = function() {
 
         //data from exchange
         var data = JSON.parse(requestExchange.responseText)
+        console.log(data)
+
         //displays text below the graph
         document.getElementById('bthEthSummary').innerHTML =  `Between Poloniex, Yobit and Bittrex, the lowest ask is: <br> ${data['BTC-ETH'].exchangeName} at ${data['BTC-ETH'].rate}`
         document.getElementById('bthLtcSummary').innerHTML =  `Between Poloniex, Yobit and Bittrex, the lowest ask is: <br> ${data['BTC-LTC'].exchangeName} at ${data['BTC-LTC'].rate}`

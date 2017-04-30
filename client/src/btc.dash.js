@@ -9,7 +9,7 @@ requestHistoryDash.onload = function() {
 
         //data for the graph
         var data = JSON.parse(requestHistoryDash.responseText);
-
+        console.log(data)
 
         //building the graph
         Highcharts.chart('btcDash', {
