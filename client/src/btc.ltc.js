@@ -26,7 +26,10 @@ requestHistoryLTC.onload = function() {
                 type: 'datetime',
                 labels: {
                     enabled:false
-                }
+                },
+                title: {
+                    text: 'time (seconds)'
+                }                
             },
             yAxis: {
                 title: {
