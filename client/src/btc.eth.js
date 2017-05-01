@@ -33,7 +33,7 @@ requestHistoryETH.onload = function() {
             },
             yAxis: {
                 title: {
-                    text: 'Rate (%)'
+                    text: 'Rate'
                 }
             },
             plotOptions: {

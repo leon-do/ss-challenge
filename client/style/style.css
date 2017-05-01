@@ -8,5 +8,20 @@ body{
 .summary{
     text-align: center;
     color: grey;
+    font-size: 20px;
+}
+.graph{
+    min-width: 310px; 
+    height: 400px; 
+    margin: 0px 30px 0px 20px
+}
+#title{
+    text-align: center;
+    color: white;
     font-size: 25px;
+}
+h1{
+    text-align: center;
+    color: white;
+    font-size: 40px;
 }

@@ -32,9 +32,14 @@ requestExchange.onload = function() {
         console.log(data)
 
         //displays text below the graph
-        document.getElementById('bthEthSummary').innerHTML =  `Between Poloniex, Yobit and Bittrex, the lowest ask is: <br> ${data['BTC-ETH'].exchangeName} at ${data['BTC-ETH'].rate}`
-        document.getElementById('bthLtcSummary').innerHTML =  `Between Poloniex, Yobit and Bittrex, the lowest ask is: <br> ${data['BTC-LTC'].exchangeName} at ${data['BTC-LTC'].rate}`
-        document.getElementById('bthDashSummary').innerHTML = `Between Poloniex, Yobit and Bittrex, the lowest ask is: <br> ${data['BTC-DASH'].exchangeName} at ${data['BTC-DASH'].rate}`
+        document.getElementById('title').innerHTML = `
+            BTC-ETH : ${data['BTC-ETH'].exchangeName} at ${data['BTC-ETH'].rate} <br>
+            BTC-LTC : ${data['BTC-LTC'].exchangeName} at ${data['BTC-LTC'].rate} <br>
+            BTC-DASH : ${data['BTC-DASH'].exchangeName} at ${data['BTC-DASH'].rate} <br>            
+        `
+        document.getElementById('bthEthSummary').innerHTML =  `Between Poloniex, Yobit and Bittrex, the lowest ask is <br> ${data['BTC-ETH'].exchangeName} at ${data['BTC-ETH'].rate} BTC for 1 ETH <br> at <br> ${new Date()}`
+        document.getElementById('bthLtcSummary').innerHTML =  `Between Poloniex, Yobit and Bittrex, the lowest ask is <br> ${data['BTC-LTC'].exchangeName} at ${data['BTC-LTC'].rate} BTC for 1 LTC <br> at <br> ${new Date()}`
+        document.getElementById('bthDashSummary').innerHTML = `Between Poloniex, Yobit and Bittrex, the lowest ask is <br> ${data['BTC-DASH'].exchangeName} at ${data['BTC-DASH'].rate} BTC for 1 DASH <br> at <br> ${new Date()}`
 
     }    
 }

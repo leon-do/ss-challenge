@@ -50,7 +50,7 @@ Highcharts.theme = {
       title: {
          style: {
             color: '#A0A0A3',
-            fontSize: '20px'
+            fontSize: '20px',
          }
       }
    },
