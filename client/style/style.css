@@ -7,5 +7,6 @@ body{
 }
 .summary{
     text-align: center;
-    color: white;
+    color: grey;
+    font-size: 25px;
 }
