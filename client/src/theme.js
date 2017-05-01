@@ -41,7 +41,7 @@ Highcharts.theme = {
       gridLineColor: '#707073',
       labels: {
          style: {
-            color: '#E0E0E3'
+            color: '#E0E0E3',
          }
       },
       lineColor: '#707073',
@@ -49,8 +49,8 @@ Highcharts.theme = {
       tickColor: '#707073',
       title: {
          style: {
-            color: '#A0A0A3'
-
+            color: '#A0A0A3',
+            fontSize: '20px'
          }
       }
    },
@@ -58,7 +58,8 @@ Highcharts.theme = {
       gridLineColor: '#707073',
       labels: {
          style: {
-            color: '#E0E0E3'
+            color: '#E0E0E3',
+            fontSize: '15px'
          }
       },
       lineColor: '#707073',
@@ -67,7 +68,8 @@ Highcharts.theme = {
       tickWidth: 1,
       title: {
          style: {
-            color: '#A0A0A3'
+            color: '#A0A0A3',
+            fontSize: '20px'            
          }
       }
    },
@@ -75,7 +77,7 @@ Highcharts.theme = {
       backgroundColor: 'rgba(0, 0, 0, 0.85)',
       style: {
          color: '#F0F0F0',
-         fontSize: '15px'
+         fontSize: '20px'
       }
    },
    plotOptions: {
@@ -106,16 +108,11 @@ Highcharts.theme = {
       },
       itemHiddenStyle: {
          color: '#606063'
-      }
-   },
-   credits: {
-      style: {
-         color: '#666'
-      }
+      },
    },
    labels: {
       style: {
-         color: '#707073'
+         color: '#707073',
       }
    },
 
