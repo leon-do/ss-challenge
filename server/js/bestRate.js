@@ -11,7 +11,7 @@ exports.indexOfLowestVal = (arr, callback) => {
     // reduce loops through the array
     // compares previous (a) with next (b)
     // if a.rate < b.rate, checks what rate is smaller
-    // returns the object: { rate: 1, name: 'bittrex' }
+    // returns the object with lowest rate: { rate: 1, name: 'bittrex' }
     // indexOf gets the index of the object
     let minIndex = arr.indexOf(arr.reduce((a,b) => a.rate < b.rate ? a : b))
 

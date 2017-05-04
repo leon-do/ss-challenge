@@ -13,7 +13,7 @@ exports.list = (coin1, coin2, cb) => {
 
   async.parallel({
 
-      poloniex: (callback) => {
+      poloniex(callback) {
 
           //poloniex api requires a start and end date
           let d = new Date();
@@ -37,7 +37,7 @@ exports.list = (coin1, coin2, cb) => {
 
 
 
-      bittrex: (callback) => {
+      bittrex(callback) {
 
           request(`https://bittrex.com/api/v1.1/public/getmarkethistory?market=${coin1}-${coin2}&count=4`, (error, response, body) => {
 
@@ -52,7 +52,7 @@ exports.list = (coin1, coin2, cb) => {
       },
 
 
-      yobit: (callback) => {
+      yobit(callback) {
 
           request(`https://yobit.net/api/2/${coin2.toLowerCase()}_${coin1.toLowerCase()}/trades`, (error, response, body) => {
 
