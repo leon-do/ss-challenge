@@ -10,9 +10,9 @@
 */
 
 
-var async = require('async')
-var allRates = require('./allRates.js')
-var bestRate = require('./bestRate.js')
+const async = require('async')
+const allRates = require('./allRates.js')
+const bestRate = require('./bestRate.js')
 
 //expose results to other js files (server.js)
 exports.lowestRate = function(cb){
