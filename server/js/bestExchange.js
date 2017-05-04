@@ -10,25 +10,25 @@
 */
 
 
-var async = require('async')
-var allRates = require('./allRates.js')
-var bestRate = require('./bestRate.js')
+const async = require('async')
+const allRates = require('./allRates.js')
+const bestRate = require('./bestRate.js')
 
 //expose results to other js files (server.js)
-exports.lowestRate = function(cb){
+exports.lowestRate = (cb) => {
     
     // run the API calls in parallel
     async.parallel({
 
         //first API call
-        'BTC-ETH': function(callback){
+        'BTC-ETH': (callback) => {
 
             // get all rates for all exchanges
-            allRates.rates('BTC','ETH', function(arr){
+            allRates.rates('BTC','ETH', (arr) => {
                 // bestRate calls function from bestRate.js 
                 // bestRate takes in an array as an argument and returns the index with the lowest rate
                 // arr = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
-                bestRate.indexOfLowestVal(arr, function(index){
+                bestRate.indexOfLowestVal(arr, (index) => {
                     //index from the callback is the index with the lowest rate
                     console.log(`
 
@@ -46,10 +46,10 @@ exports.lowestRate = function(cb){
 
 
         //second api call
-        'BTC-LTC': function(callback){
+        'BTC-LTC': (callback) => {
 
-            allRates.rates('BTC','LTC', function(arr){
-                bestRate.indexOfLowestVal(arr, function(index){
+            allRates.rates('BTC','LTC', (arr) => {
+                bestRate.indexOfLowestVal(arr, (index) => {
                     console.log(`
 
                         BTC to LTC exchange rate: ${JSON.stringify(arr)}
@@ -63,10 +63,10 @@ exports.lowestRate = function(cb){
         },
 
         // third api call
-        'BTC-DASH': function(callback){
+        'BTC-DASH': (callback) => {
 
-            allRates.rates('BTC','DASH', function(arr){
-                bestRate.indexOfLowestVal(arr, function(index){
+            allRates.rates('BTC','DASH', (arr) => {
+                bestRate.indexOfLowestVal(arr, (index) => {
                     console.log(`
 
                         BTC to DASH exchange rate: ${JSON.stringify(arr)}
@@ -80,7 +80,7 @@ exports.lowestRate = function(cb){
         }
     },
 
-        function(error, results){
+        (error, results) => {
             //expose results for another js file
             cb(results)
         }

@@ -19,22 +19,22 @@
         
 */
 
-var async = require('async')
-var request = require('request')
+const async = require('async')
+const request = require('request')
 
 //expose results to other js files (server.js)
-exports.rates = function(coin1, coin2, cb){
+exports.rates = (coin1, coin2, cb) => {
     
     // run the API calls in parallel
     async.parallel({
 
         //API call to poloniex using request
-        poloniex: function(callback){
+        poloniex: (callback) => {
 
             // API call to get poloniex ticker
-            request('https://poloniex.com/public?command=returnTicker', function (error, response, body) {
+            request('https://poloniex.com/public?command=returnTicker', (error, response, body) => {
                 //convert string to an object
-                var object = JSON.parse(body)
+                let object = JSON.parse(body)
                 // parse the info for callback. This will be displayed in the results (at the bottom of this page)
                 callback(error, object[`${coin1}_${coin2}`])
             });
@@ -43,21 +43,21 @@ exports.rates = function(coin1, coin2, cb){
         },
         
         // API call to Bittrex using request
-        bittrex: function(callback){
+        bittrex: (callback) => {
 
             // call to get Bittrex ticker
-            request(`https://bittrex.com/api/v1.1/public/getticker?market=${coin1}-${coin2}`, function (error, response, body) {
-                var object = JSON.parse(body)
+            request(`https://bittrex.com/api/v1.1/public/getticker?market=${coin1}-${coin2}`, (error, response, body) => {
+                let object = JSON.parse(body)
                 callback(error, object)
             })
 
         },
 
         // API call to yobit using request
-        yobit: function(callback){
+        yobit: (callback) => {
 
-            request(`https://yobit.net/api/3/ticker/${coin2.toString().toLowerCase()}_${coin1.toString().toLowerCase()}`, function (error, response, body) {
-                var object = JSON.parse(body)
+            request(`https://yobit.net/api/3/ticker/${coin2.toString().toLowerCase()}_${coin1.toString().toLowerCase()}`, (error, response, body) => {
+                let object = JSON.parse(body)
                 callback(error, object[`${coin2.toString().toLowerCase()}_${coin1.toString().toLowerCase()}`])
             });
 
@@ -66,8 +66,8 @@ exports.rates = function(coin1, coin2, cb){
         /* 
         ADD ANOTHER API CALL HERE
 
-        exchangeZ : function(callback){
-            request(`https://SOME_URL_HERE`, function (error, response, body) {
+        exchangeZ : (callback) => {
+            request(`https://SOME_URL_HERE`, (error, response, body) => {
                 callback(error, body)
             })
         }
@@ -79,9 +79,9 @@ exports.rates = function(coin1, coin2, cb){
 
     },
     // combines all of the api calls (above) into an object called results
-    function(error, results) {
+    (error, results) => {
         // parse the results into a array called lowestAsk. I'm using an array to get the lowest value in O(n) time. This data structure can be optimized
-        var lowestAsk = []
+        let lowestAsk = []
         lowestAsk.push({
             rate: parseFloat(results.poloniex.lowestAsk),
             name: 'poloniex'})

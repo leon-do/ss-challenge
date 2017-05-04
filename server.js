@@ -20,46 +20,46 @@
 */
 
 // bestExchange gets the lowest rates
-var bestExchange = require('./server/js/bestExchange.js')
+const bestExchange = require('./server/js/bestExchange.js')
 // txHistory returns the 100 most recent transactions
-var txHistory = require('./server/js/txHistory.js')
-var express = require('express');
-var app = express();
+const txHistory = require('./server/js/txHistory.js')
+const express = require('express');
+const app = express();
 
 //index.html
 app.use(express.static(__dirname + "/client"));
 
 // http://localhost:3000/exchange
-app.get('/exchange', function(req,res){
+app.get('/exchange', (req,res) => {
     // bestExchange.lowestRate gets the lowst Ask Rate rates from poloniex, yobit and bitrex
-    bestExchange.lowestRate(function(data){
+    bestExchange.lowestRate((data) => {
         // the lowest rates are stored into the object called data
         res.send(data)
     })
 })
 
 // http://localhost:3000/history/BTC_LTC
-app.get('/history/BTC_LTC', function(req,res){
-    txHistory.list('BTC', 'LTC',function(data){
+app.get('/history/BTC_LTC', (req,res) => {
+    txHistory.list('BTC', 'LTC', (data) => {
         res.send(data)
     })
 })
 
 
 // http://localhost:3000/history/BTC_LTC
-app.get('/history/BTC_ETH', function(req,res){
-    txHistory.list('BTC', 'ETH',function(data){
+app.get('/history/BTC_ETH', (req,res) => {
+    txHistory.list('BTC', 'ETH', (data) => {
         res.send(data)
     })
 })
 
 // http://localhost:3000/history/BTC_DASH
-app.get('/history/BTC_DASH', function(req,res){
-    txHistory.list('BTC', 'DASH',function(data){
+app.get('/history/BTC_DASH', (req,res) => {
+    txHistory.list('BTC', 'DASH', (data) => {
         res.send(data)
     })
 })
 
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 3000, () => {
     console.log("listening on port port 3000")
 });
