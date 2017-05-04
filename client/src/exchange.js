@@ -20,15 +20,15 @@ data =
 
 */
 
-var requestExchange = new XMLHttpRequest();
+const requestExchange = new XMLHttpRequest();
 requestExchange.open('GET', '/exchange', true);
 
 //get exchange data on load
-requestExchange.onload = function() {
+requestExchange.onload = () => {
     if (requestExchange.status >= 200 && requestExchange.status < 400) {
 
         //data from exchange
-        var data = JSON.parse(requestExchange.responseText)
+        let data = JSON.parse(requestExchange.responseText)
         console.log(data)
 
         //displays text below the graph

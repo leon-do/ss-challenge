@@ -1,14 +1,14 @@
 // this displays the graph
 
-var requestHistoryLTC = new XMLHttpRequest();
+const requestHistoryLTC = new XMLHttpRequest();
 requestHistoryLTC.open('GET', '/history/BTC_LTC', true);
 
 //on load, get BTC_LTC data for the graph.
-requestHistoryLTC.onload = function() {
+requestHistoryLTC.onload = () => {
     if (requestHistoryLTC.status >= 200 && requestHistoryLTC.status < 400) {
 
         //data for the graph
-        var data = JSON.parse(requestHistoryLTC.responseText);
+        let data = JSON.parse(requestHistoryLTC.responseText);
         console.log(data)
 
         //building the graph
