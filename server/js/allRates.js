@@ -29,7 +29,7 @@ exports.rates = (coin1, coin2, cb) => {
     async.parallel({
 
         //API call to poloniex using request
-        poloniex: (callback) => {
+        poloniex(callback) {
 
             // API call to get poloniex ticker
             request('https://poloniex.com/public?command=returnTicker', (error, response, body) => {
@@ -43,7 +43,7 @@ exports.rates = (coin1, coin2, cb) => {
         },
         
         // API call to Bittrex using request
-        bittrex: (callback) => {
+        bittrex(callback) {
 
             // call to get Bittrex ticker
             request(`https://bittrex.com/api/v1.1/public/getticker?market=${coin1}-${coin2}`, (error, response, body) => {
@@ -54,7 +54,7 @@ exports.rates = (coin1, coin2, cb) => {
         },
 
         // API call to yobit using request
-        yobit: (callback) => {
+        yobit(callback) {
 
             request(`https://yobit.net/api/3/ticker/${coin2.toString().toLowerCase()}_${coin1.toString().toLowerCase()}`, (error, response, body) => {
                 let object = JSON.parse(body)
