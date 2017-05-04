@@ -34,7 +34,7 @@ exports.rates = (coin1, coin2, cb) => {
             // API call to get poloniex ticker
             request('https://poloniex.com/public?command=returnTicker', (error, response, body) => {
                 //convert string to an object
-                var object = JSON.parse(body)
+                let object = JSON.parse(body)
                 // parse the info for callback. This will be displayed in the results (at the bottom of this page)
                 callback(error, object[`${coin1}_${coin2}`])
             });
@@ -47,7 +47,7 @@ exports.rates = (coin1, coin2, cb) => {
 
             // call to get Bittrex ticker
             request(`https://bittrex.com/api/v1.1/public/getticker?market=${coin1}-${coin2}`, (error, response, body) => {
-                var object = JSON.parse(body)
+                let object = JSON.parse(body)
                 callback(error, object)
             })
 
@@ -57,7 +57,7 @@ exports.rates = (coin1, coin2, cb) => {
         yobit: (callback) => {
 
             request(`https://yobit.net/api/3/ticker/${coin2.toString().toLowerCase()}_${coin1.toString().toLowerCase()}`, (error, response, body) => {
-                var object = JSON.parse(body)
+                let object = JSON.parse(body)
                 callback(error, object[`${coin2.toString().toLowerCase()}_${coin1.toString().toLowerCase()}`])
             });
 
@@ -81,7 +81,7 @@ exports.rates = (coin1, coin2, cb) => {
     // combines all of the api calls (above) into an object called results
     (error, results) => {
         // parse the results into a array called lowestAsk. I'm using an array to get the lowest value in O(n) time. This data structure can be optimized
-        var lowestAsk = []
+        let lowestAsk = []
         lowestAsk.push({
             rate: parseFloat(results.poloniex.lowestAsk),
             name: 'poloniex'})
