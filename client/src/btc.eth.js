@@ -1,14 +1,14 @@
 // this displays the graph
 
-var requestHistoryETH = new XMLHttpRequest();
+const requestHistoryETH = new XMLHttpRequest();
 requestHistoryETH.open('GET', '/history/BTC_ETH', true);
 
 //on load, get BTC_ETH data for the graph.
-requestHistoryETH.onload = function() {
+requestHistoryETH.onload = () => {
     if (requestHistoryETH.status >= 200 && requestHistoryETH.status < 400) {
 
         //data for the graph
-        var data = JSON.parse(requestHistoryETH.responseText);
+        let data = JSON.parse(requestHistoryETH.responseText);
         console.log(data)
 
         //building the graph

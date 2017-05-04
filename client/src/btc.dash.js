@@ -1,14 +1,14 @@
 // this displays the graph
 
-var requestHistoryDash = new XMLHttpRequest();
+const requestHistoryDash = new XMLHttpRequest();
 requestHistoryDash.open('GET', '/history/BTC_DASH', true);
 
 //on load, get BTC_DASH data for the graph.
-requestHistoryDash.onload = function() {
+requestHistoryDash.onload = () => {
     if (requestHistoryDash.status >= 200 && requestHistoryDash.status < 400) {
 
         //data for the graph
-        var data = JSON.parse(requestHistoryDash.responseText);
+        let data = JSON.parse(requestHistoryDash.responseText);
         console.log(data)
 
         //building the graph
