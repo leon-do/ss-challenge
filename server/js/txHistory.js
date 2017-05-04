@@ -20,7 +20,7 @@ exports.list = (coin1, coin2, cb) => {
           var startDate = (d.getTime() - d.getTimezoneOffset() - 1000000)/1000
           var endDate = (d.getTime() - d.getTimezoneOffset())/1000
 
-          request(`https://poloniex.com/public?command=returnTradeHistory&currencyPair=${coin1}_${coin2}&start=${startDate}&end=${endDate}`, function (error, response, body) {
+          request(`https://poloniex.com/public?command=returnTradeHistory&currencyPair=${coin1}_${coin2}&start=${startDate}&end=${endDate}`, (error, response, body) => {
               // loop through the array and update date and rate
               // [  [date, rate], [date, rate]... ]
               // data is built this way to easily graph on client side --> [ [x1,y1], [x2,y2] ...]
