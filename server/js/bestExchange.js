@@ -9,7 +9,6 @@
 
 */
 
-
 const async = require('async')
 const allRates = require('./allRates.js')
 const bestRate = require('./bestRate.js')

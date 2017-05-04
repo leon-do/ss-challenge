@@ -75,8 +75,9 @@ exports.list = (coin1, coin2, cb) => {
 
   },
 
-  (err, data) => {
-      cb(data)
+  (error, txHistory) => {
+    //tx history = [ [ 2017-05-04T23:01:03.000Z, 0.0619 ],[ 2017-05-04T23:01:02.000Z, 0.0619 ],[ 2017-05-04T23:00:56.000Z, 0.06160017 ]]
+      cb(txHistory)
   })
 
 }
