@@ -1,15 +1,17 @@
+'use strict';
+
 // this displays the graph
 
-const requestHistoryLTC = new XMLHttpRequest();
+var requestHistoryLTC = new XMLHttpRequest();
 requestHistoryLTC.open('GET', '/history/BTC_LTC', true);
 
 //on load, get BTC_LTC data for the graph.
-requestHistoryLTC.onload = () => {
+requestHistoryLTC.onload = function () {
     if (requestHistoryLTC.status >= 200 && requestHistoryLTC.status < 400) {
 
         //data for the graph
-        let data = JSON.parse(requestHistoryLTC.responseText);
-        console.log(data)
+        var data = JSON.parse(requestHistoryLTC.responseText);
+        console.log(data);
 
         //building the graph
         Highcharts.chart('btcLtc', {
@@ -25,16 +27,16 @@ requestHistoryLTC.onload = () => {
             xAxis: {
                 type: 'datetime',
                 labels: {
-                    enabled:false
+                    enabled: false
                 },
                 title: {
-                    text: 'time (seconds)'
-                }                
+                    text: 'time'
+                }
             },
             yAxis: {
                 title: {
                     text: 'Rate'
-                },
+                }
             },
             plotOptions: {
                 spline: {
@@ -46,17 +48,17 @@ requestHistoryLTC.onload = () => {
 
             series: [{
                 name: 'Bittrex',
-                data: data.bittrex.reverse().splice(1,100)
+                data: data.bittrex.reverse().splice(1, 100)
             }, {
                 name: 'Poloniex',
-                data: data.poloniex.reverse().splice(0,100)
+                data: data.poloniex.reverse().splice(0, 100)
             }, {
                 name: 'Yobit',
-                data: data.yobit.reverse().splice(0,100)
+                data: data.yobit.reverse().splice(0, 100)
             }]
-});
+        });
     } else {
-        console.log('request error')
+        console.log('request error');
     }
 };
 
