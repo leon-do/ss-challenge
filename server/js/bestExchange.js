@@ -8,7 +8,7 @@
     exchange takes in two arguments, coin1 and coin2 and returns an array with different rates from different exchanges.
 
 */
-
+"use strict";
 const async = require('async')
 const allRates = require('./allRates.js')
 const bestRate = require('./bestRate.js')
