@@ -4,7 +4,7 @@ This does 3 API calls to get back transaction history
 The date is then normlized to standardize date format YYYY-DD-MMT0HH:MM:SS:SSSZ (2017-04-30T07:46:38)
 
 */
-
+"use strict";
 const request = require('request');
 const async = require('async')
 

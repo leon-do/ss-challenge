@@ -18,7 +18,7 @@
         - not performant. Some data can be retrieved in one API call. This method may call the same data multiple times.
         
 */
-
+"use strict";
 const async = require('async')
 const request = require('request')
 

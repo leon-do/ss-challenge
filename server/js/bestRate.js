@@ -5,7 +5,7 @@
 arr = [ { rate: 3, name: 'poloniex' }, { rate: 1, name: 'bittrex' }]
 returns minIndex = 0
 */
-
+"use strict";
 exports.indexOfLowestVal = (arr, callback) => {
     
     // reduce loops through the array
