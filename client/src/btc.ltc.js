@@ -30,7 +30,7 @@ requestHistoryLTC.onload = function () {
                     enabled: false
                 },
                 title: {
-                    text: 'time (seconds)'
+                    text: 'time'
                 }
             },
             yAxis: {
