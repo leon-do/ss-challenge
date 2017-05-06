@@ -1,98 +1,60 @@
-/*
-
-    The flow:
-
-    call out to poloniex and retrieve data1
-    call out to Bittrex and retrieve data2
-    call out to yobit and retrieve data3
-
-    the data is then stored in an object called results = {data1, data2, data3}
-    results is then parsed and pushed into an array called lowestAsk = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
-    lowestAsk passed back in a callback for use
-
-    Pros of this structure: 
-        - Easy to scale by adding more API calls inside async.parallel
-        - (relatively) easy to understand
-
-    Cons of this structure:
-        - not performant. Some data can be retrieved in one API call. This method may call the same data multiple times.
-        
-*/
 "use strict";
-const async = require('async')
 const request = require('request')
+var coin1 = 'BTC'
+var coin2 = 'ETH'
+const p2 = 1337;
 
-//expose results to other js files (server.js)
+
 exports.rates = (coin1, coin2, cb) => {
+
+    const poloniex = new Promise((resolve, reject) => {
+        // API call to get poloniex ticker
+        request('https://poloniex.com/public?command=returnTicker', (error, response, body) => {
+            //convert string to an object
+            let object = JSON.parse(body)
+            resolve(object[`${coin1}_${coin2}`])
+        });
+    })
+
+
+    const bittrex = new Promise((resolve, reject) => {
+        // call to get Bittrex ticker
+        request(`https://bittrex.com/api/v1.1/public/getticker?market=${coin1}-${coin2}`, (error, response, body) => {
+            let object = JSON.parse(body)
+            resolve(object)
+        })
+    })
+
+
+    const yobit = new Promise((resolve, reject) => {
+        request(`https://yobit.net/api/3/ticker/${coin2.toString().toLowerCase()}_${coin1.toString().toLowerCase()}`, (error, response, body) => {
+            let object = JSON.parse(body)
+            resolve(object[`${coin2.toString().toLowerCase()}_${coin1.toString().toLowerCase()}`])
+        });
+    })
+
     
-    // run the API calls in parallel
-    async.parallel({
 
-        //API call to poloniex using request
-        poloniex(callback) {
-
-            // API call to get poloniex ticker
-            request('https://poloniex.com/public?command=returnTicker', (error, response, body) => {
-                //convert string to an object
-                let object = JSON.parse(body)
-                // parse the info for callback. This will be displayed in the results (at the bottom of this page)
-                callback(error, object[`${coin1}_${coin2}`])
-            });
-
-
-        },
-        
-        // API call to Bittrex using request
-        bittrex(callback) {
-
-            // call to get Bittrex ticker
-            request(`https://bittrex.com/api/v1.1/public/getticker?market=${coin1}-${coin2}`, (error, response, body) => {
-                let object = JSON.parse(body)
-                callback(error, object)
-            })
-
-        },
-
-        // API call to yobit using request
-        yobit(callback) {
-
-            request(`https://yobit.net/api/3/ticker/${coin2.toString().toLowerCase()}_${coin1.toString().toLowerCase()}`, (error, response, body) => {
-                let object = JSON.parse(body)
-                callback(error, object[`${coin2.toString().toLowerCase()}_${coin1.toString().toLowerCase()}`])
-            });
-
-        }
-
-        /* 
-        ADD ANOTHER API CALL HERE
-
-        exchangeZ : (callback) => {
-            request(`https://SOME_URL_HERE`, (error, response, body) => {
-                callback(error, body)
-            })
-        }
-
-        */
+    /*
+    const exchangeZ = new Promise((resolve, reject) => {
+        request('https://SOME_URL_HERE', (error, response, body) => {
+            resolve(response)
+    })
+    */
 
 
 
-
-    },
-    // combines all of the api calls (above) into an object called results
-    (error, results) => {
-        // parse the results into a array called lowestAsk. I'm using an array to get the lowest value in O(n) time. This data structure can be optimized
-        let lowestAsk = []
-        lowestAsk.push({
-            rate: parseFloat(results.poloniex.lowestAsk),
-            name: 'poloniex'})
-        lowestAsk.push({
-            rate: parseFloat(results.bittrex.result.Ask),
-            name: 'bittrex'})
-        lowestAsk.push({
-            rate: parseFloat(results.yobit.low),
-            name: 'yobit'})        
-        // lowestAsk = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
-        cb(lowestAsk)
-    });
-
+    Promise.all([poloniex, bittrex, yobit])
+        .then(results => { 
+            // lowestAsk = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
+            const lowestAsk = [
+                {name: 'poloniex', rate: parseFloat(results[0].lowestAsk)},
+                {name: 'bittrex', rate: parseFloat(results[1].result.Ask)},
+                {name: 'yobit', rate: parseFloat(results[2].low)},
+            ]
+            cb(lowestAsk)
+        })
+        .catch(error => {
+          console.log(error)
+       })
 }
