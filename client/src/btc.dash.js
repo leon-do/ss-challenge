@@ -1,15 +1,17 @@
+'use strict';
+
 // this displays the graph
 
-const requestHistoryDash = new XMLHttpRequest();
+var requestHistoryDash = new XMLHttpRequest();
 requestHistoryDash.open('GET', '/history/BTC_DASH', true);
 
 //on load, get BTC_DASH data for the graph.
-requestHistoryDash.onload = () => {
+requestHistoryDash.onload = function () {
     if (requestHistoryDash.status >= 200 && requestHistoryDash.status < 400) {
 
         //data for the graph
-        let data = JSON.parse(requestHistoryDash.responseText);
-        console.log(data)
+        var data = JSON.parse(requestHistoryDash.responseText);
+        console.log(data);
 
         //building the graph
         Highcharts.chart('btcDash', {
@@ -25,16 +27,16 @@ requestHistoryDash.onload = () => {
             xAxis: {
                 type: 'datetime',
                 labels: {
-                    enabled:false
-                },                
+                    enabled: false
+                },
                 title: {
-                    text: 'time (seconds)'
+                    text: 'time'
                 }
             },
             yAxis: {
                 title: {
                     text: 'Rate'
-                },
+                }
             },
             plotOptions: {
                 spline: {
@@ -46,17 +48,17 @@ requestHistoryDash.onload = () => {
 
             series: [{
                 name: 'Bittrex',
-                data: data.bittrex.reverse().splice(1,100)
+                data: data.bittrex.reverse().splice(1, 100)
             }, {
                 name: 'Poloniex',
-                data: data.poloniex.reverse().splice(0,100)
+                data: data.poloniex.reverse().splice(0, 100)
             }, {
                 name: 'Yobit',
-                data: data.yobit.reverse().splice(0,100)
+                data: data.yobit.reverse().splice(0, 100)
             }]
-});
+        });
     } else {
-        console.log('request error')
+        console.log('request error');
     }
 };
 

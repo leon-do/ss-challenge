@@ -1,15 +1,17 @@
+'use strict';
+
 // this displays the graph
 
-const requestHistoryETH = new XMLHttpRequest();
+var requestHistoryETH = new XMLHttpRequest();
 requestHistoryETH.open('GET', '/history/BTC_ETH', true);
 
 //on load, get BTC_ETH data for the graph.
-requestHistoryETH.onload = () => {
+requestHistoryETH.onload = function () {
     if (requestHistoryETH.status >= 200 && requestHistoryETH.status < 400) {
 
         //data for the graph
-        let data = JSON.parse(requestHistoryETH.responseText);
-        console.log(data)
+        var data = JSON.parse(requestHistoryETH.responseText);
+        console.log(data);
 
         //building the graph
         Highcharts.chart('btcEth', {
@@ -25,10 +27,10 @@ requestHistoryETH.onload = () => {
             xAxis: {
                 type: 'datetime',
                 labels: {
-                    enabled:false
+                    enabled: false
                 },
                 title: {
-                    text: 'time (seconds)'
+                    text: 'time'
                 }
             },
             yAxis: {
@@ -46,17 +48,17 @@ requestHistoryETH.onload = () => {
 
             series: [{
                 name: 'Bittrex',
-                data: data.bittrex.reverse().splice(1,100)
+                data: data.bittrex.reverse().splice(1, 100)
             }, {
                 name: 'Poloniex',
-                data: data.poloniex.reverse().splice(0,100)
+                data: data.poloniex.reverse().splice(0, 100)
             }, {
                 name: 'Yobit',
-                data: data.yobit.reverse().splice(0,100)
+                data: data.yobit.reverse().splice(0, 100)
             }]
-});
+        });
     } else {
-        console.log('request error')
+        console.log('request error');
     }
 };
 
