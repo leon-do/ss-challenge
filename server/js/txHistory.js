@@ -4,7 +4,7 @@
     the trade hitory values are stored into const poloniex, bittrex and yobit 
         The date is then normlized to standardize date format YYYY-DD-MMT0HH:MM:SS:SSSZ (2017-04-30T07:46:38)
     Promise.all stores poloniex, bittrex and yobit values into a variable called txHistory
-    export variable txHistory for server.js
+    return txHistory for server.js
 
 
 
@@ -61,7 +61,7 @@ exports.list = (coin1, coin2, cb) => {
     })
      
  
-     Promise.all([poloniex, bittrex, yobit])
+     return Promise.all([poloniex, bittrex, yobit])
        .then(results => {
           //tx history = { bittrex: [ [ 2017-05-06T15:16:07.000Z, 0.0168009 ],[ 2017-05-06T15:16:07.000Z, 0.0168009 ]...
           const txHistory = {
@@ -69,7 +69,7 @@ exports.list = (coin1, coin2, cb) => {
               bittrex: results[1],
               yobit: results[2]
           }
-          cb(txHistory)
+          return txHistory
        })
        .catch(error => {
           console.log(error)

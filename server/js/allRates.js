@@ -14,7 +14,7 @@
 const request = require('request')
 
 
-exports.rates = (coin1, coin2, cb) => {
+exports.rates = (coin1, coin2) => {
 
     const poloniex = new Promise((resolve, reject) => {
         // API call to get poloniex ticker
@@ -53,7 +53,7 @@ exports.rates = (coin1, coin2, cb) => {
 
 
 
-    Promise.all([poloniex, bittrex, yobit])
+    return Promise.all([poloniex, bittrex, yobit])
         .then(results => { 
             // lowestAsk = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
             const lowestAsk = [
@@ -61,7 +61,7 @@ exports.rates = (coin1, coin2, cb) => {
                 {name: 'bittrex', rate: parseFloat(results[1].result.Ask)},
                 {name: 'yobit', rate: parseFloat(results[2].low)},
             ]
-            cb(lowestAsk)
+            return lowestAsk
         })
         .catch(error => {
           console.log(error)

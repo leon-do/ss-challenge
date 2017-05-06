@@ -12,11 +12,11 @@
 const allRates = require('./allRates.js')
 
 //expose results to other js files (server.js)
-exports.lowestRate = (cb) => {
+exports.lowestRate = () => {
     
     const BTC_ETC = new Promise((resolve, reject) => {
         // get all rates for all exchanges
-        allRates.rates('BTC','ETH', (arr) => {
+        allRates.rates('BTC','ETH').then((arr) => {
 
             // arr = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
             // minIndex finds the indexOf the lowest rate
@@ -37,7 +37,7 @@ exports.lowestRate = (cb) => {
 
 
     const BTC_LTC = new Promise((resolve, reject) => {
-        allRates.rates('BTC','LTC', (arr) => {
+        allRates.rates('BTC','LTC').then((arr) => {
             
             const minIndex = arr.indexOf(arr.reduce((a,b) => a.rate < b.rate ? a : b))
            
@@ -54,7 +54,7 @@ exports.lowestRate = (cb) => {
 
 
     const BTC_DASH = new Promise((resolve, reject) => {
-        allRates.rates('BTC','DASH', (arr) => {
+        allRates.rates('BTC','DASH').then((arr) => {
 
             const minIndex = arr.indexOf(arr.reduce((a,b) => a.rate < b.rate ? a : b))
 
@@ -71,7 +71,7 @@ exports.lowestRate = (cb) => {
 
 
     // Promise.all stores all of the lowest rates into a variable called bestExchange
-    Promise.all([BTC_ETC, BTC_LTC, BTC_DASH])
+    return Promise.all([BTC_ETC, BTC_LTC, BTC_DASH])
     .then(results => {
         // results = [ { exchangeName: 'yobit', rate: 0.05726615 },{ exchangeName: 'yobit', rate: 0.0157702 }, { exchangeName: 'yobit', rate: 0.061504 } ]
         // bestExchange = { 'BTC_LTC': { exchangeName: 'yobit', rate: 0.0157702 }, 'BTC-DASH': { exchangeName: 'yobit', rate: 0.061504 }, 'BTC-ETH': { exchangeName: 'yobit', rate: 0.05726615 } }
@@ -80,7 +80,7 @@ exports.lowestRate = (cb) => {
             BTC_LTC: results[1],
             BTC_DASH: results[2]
         }
-        cb(bestExchange)
+        return bestExchange
     })
     .catch(error =>{
         console.log(error)

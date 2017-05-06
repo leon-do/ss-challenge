@@ -32,7 +32,7 @@ app.use(express.static(__dirname + "/client"));
 // http://localhost:3000/exchange
 app.get('/exchange', (req,res) => {
     // bestExchange.lowestRate gets the lowst Ask Rate rates from poloniex, yobit and bitrex
-    bestExchange.lowestRate((data) => {
+    bestExchange.lowestRate().then((data) => {
         // the lowest rates are stored into the object called data
         res.send(data)
     })
@@ -40,7 +40,7 @@ app.get('/exchange', (req,res) => {
 
 // http://localhost:3000/history/BTC_LTC
 app.get('/history/BTC_LTC', (req,res) => {
-    txHistory.list('BTC', 'LTC', (data) => {
+    txHistory.list('BTC', 'LTC').then((data) => {
         res.send(data)
     })
 })
@@ -48,14 +48,14 @@ app.get('/history/BTC_LTC', (req,res) => {
 
 // http://localhost:3000/history/BTC_LTC
 app.get('/history/BTC_ETH', (req,res) => {
-    txHistory.list('BTC', 'ETH', (data) => {
+    txHistory.list('BTC', 'ETH').then((data) => {
         res.send(data)
     })
 })
 
 // http://localhost:3000/history/BTC_DASH
 app.get('/history/BTC_DASH', (req,res) => {
-    txHistory.list('BTC', 'DASH', (data) => {
+    txHistory.list('BTC', 'DASH').then((data) => {
         res.send(data)
     })
 })
