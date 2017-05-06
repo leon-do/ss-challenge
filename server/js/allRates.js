@@ -1,3 +1,15 @@
+/*
+
+    The flow:
+    Find the ticker value for poloniex, bittrex and yobit 
+    the ticker values are stored into const poloniex, bittrex and yobit 
+    Promise.all stores poloniex, bittrex and yobit values into a variable called lowestAsk
+    export variable lowestAsk for bestExchange.js
+
+*/
+
+
+
 "use strict";
 const request = require('request')
 var coin1 = 'BTC'

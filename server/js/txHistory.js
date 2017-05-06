@@ -1,7 +1,12 @@
 /*
 
-This does 3 API calls to get back transaction history
-The date is then normlized to standardize date format YYYY-DD-MMT0HH:MM:SS:SSSZ (2017-04-30T07:46:38)
+    Find the trade hitory for poloniex, bittrex and yobit 
+    the trade hitory values are stored into const poloniex, bittrex and yobit 
+        The date is then normlized to standardize date format YYYY-DD-MMT0HH:MM:SS:SSSZ (2017-04-30T07:46:38)
+    Promise.all stores poloniex, bittrex and yobit values into a variable called txHistory
+    export variable txHistory for server.js
+
+
 
 */
 "use strict";
