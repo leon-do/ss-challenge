@@ -16,72 +16,73 @@ const bestRate = require('./bestRate.js')
 //expose results to other js files (server.js)
 exports.lowestRate = (cb) => {
     
-    // run the API calls in parallel
-    async.parallel({
+    const BTC_ETC = new Promise((resolve, reject) => {
+        // get all rates for all exchanges
+        allRates.rates('BTC','ETH', (arr) => {
+            // bestRate calls function from bestRate.js 
+            // bestRate takes in an array as an argument and returns the index with the lowest rate
+            // arr = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
+            bestRate.indexOfLowestVal(arr, (index) => {
+                //index from the callback is the index with the lowest rate
+                console.log(`
 
-        //first API call
-        'BTC-ETH': (callback) => {
+                    BTC to ETH exchange rate: ${JSON.stringify(arr)}
+                    Between Poloniex, Bittrex and Yobit, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
 
-            // get all rates for all exchanges
-            allRates.rates('BTC','ETH', (arr) => {
-                // bestRate calls function from bestRate.js 
-                // bestRate takes in an array as an argument and returns the index with the lowest rate
-                // arr = [ { rate: 0.05247999, name: 'poloniex' }, { rate: 0.05247765, name: 'bittrex' } ]
-                bestRate.indexOfLowestVal(arr, (index) => {
-                    //index from the callback is the index with the lowest rate
-                    console.log(`
+                `)
 
-                        BTC to ETH exchange rate: ${JSON.stringify(arr)}
-                        Between Poloniex, Bittrex and Yobit, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
-
-                    `)
-
-                //store data back into results (at the bottom)
-                callback(null, {exchangeName: arr[index].name, rate: arr[index].rate})
-                })
+            //store data back into results (at the bottom)
+            resolve({exchangeName: arr[index].name, rate: arr[index].rate})
             })
+        })        
+    })
 
-        },
 
 
-        //second api call
-        'BTC-LTC': (callback) => {
+    const BTC_LTC = new Promise((resolve, reject) => {
+        allRates.rates('BTC','LTC', (arr) => {
+            bestRate.indexOfLowestVal(arr, (index) => {
+                console.log(`
 
-            allRates.rates('BTC','LTC', (arr) => {
-                bestRate.indexOfLowestVal(arr, (index) => {
-                    console.log(`
+                    BTC to LTC exchange rate: ${JSON.stringify(arr)}
+                    Between Poloniex, Bittrex and Yobit, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
 
-                        BTC to LTC exchange rate: ${JSON.stringify(arr)}
-                        Between Poloniex, Bittrex and Yobit, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
-
-                    `) 
-                callback(null, {exchangeName: arr[index].name, rate: arr[index].rate})
-                })
+                `) 
+            resolve({exchangeName: arr[index].name, rate: arr[index].rate})
             })
+        })
+    })
 
-        },
 
-        // third api call
-        'BTC-DASH': (callback) => {
+    const BTC_DASH = new Promise((resolve, reject) => {
+        allRates.rates('BTC','DASH', (arr) => {
+            bestRate.indexOfLowestVal(arr, (index) => {
+                console.log(`
 
-            allRates.rates('BTC','DASH', (arr) => {
-                bestRate.indexOfLowestVal(arr, (index) => {
-                    console.log(`
+                    BTC to DASH exchange rate: ${JSON.stringify(arr)}
+                    Between Poloniex, Bittrex and Yobit, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
 
-                        BTC to DASH exchange rate: ${JSON.stringify(arr)}
-                        Between Poloniex, Bittrex and Yobit, the lowest ask is: ${arr[index].name} at ${arr[index].rate}
-
-                    `)   
-                callback(null, {exchangeName: arr[index].name, rate: arr[index].rate})
-                })
+                `)   
+            resolve({exchangeName: arr[index].name, rate: arr[index].rate})
             })
+        })
+    })
 
+
+    Promise.all([BTC_ETC, BTC_LTC, BTC_DASH])
+    .then(results => {
+        // results = [ { exchangeName: 'yobit', rate: 0.05726615 },{ exchangeName: 'yobit', rate: 0.0157702 }, { exchangeName: 'yobit', rate: 0.061504 } ]
+        // bestExchange = { 'BTC_LTC': { exchangeName: 'yobit', rate: 0.0157702 }, 'BTC-DASH': { exchangeName: 'yobit', rate: 0.061504 }, 'BTC-ETH': { exchangeName: 'yobit', rate: 0.05726615 } }
+        const bestExchange = {
+            BTC_ETH: results[0],
+            BTC_LTC: results[1],
+            BTC_DASH: results[2]
         }
-    },
+        cb(bestExchange)
+    })
+    .catch(error =>{
+        console.log(error)
+    })
 
-        (error, results) => {
-            //expose results for another js file
-            cb(results)
-        }
-    )
+
 }

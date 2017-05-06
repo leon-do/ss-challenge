@@ -1,9 +1,9 @@
 /*
     bestExchange returns the best exchanges and lowest rate 
     data =  
-        { 'BTC-ETH': { exchangeName: 'yobit', rate: 0.05030001 },
-          'BTC-LTC': { exchangeName: 'yobit', rate: 0.01100107 },
-          'BTC-DASH': { exchangeName: 'yobit', rate: 0.06157018 } }
+        { BTC_ETH: { exchangeName: 'yobit', rate: 0.05030001 },
+          BTC_LTC: { exchangeName: 'yobit', rate: 0.01100107 },
+          BTC_DASH: { exchangeName: 'yobit', rate: 0.06157018 } }
 
 
     txHistory lists transaction history date and rate
