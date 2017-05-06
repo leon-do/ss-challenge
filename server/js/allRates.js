@@ -12,10 +12,6 @@
 
 "use strict";
 const request = require('request')
-var coin1 = 'BTC'
-var coin2 = 'ETH'
-const p2 = 1337;
-
 
 exports.rates = (coin1, coin2, cb) => {
 
