@@ -1,10 +1,6 @@
-# shapeshift-challenge
+# ss-challenge
 
 ### Getting Started
-- https://shapeshift-challenge.herokuapp.com/
-
-    or
-
 - Install npm package `$ npm i`
 - Start the server:
 `$ node server.js`
